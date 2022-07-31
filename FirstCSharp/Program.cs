@@ -20,3 +20,29 @@ double height = 1.875;
 bool blueEyed = true;
 
 Console.WriteLine($"Hi my name is {name}, I am {age} years old. I am {height} tall. {blueEyed}");
+
+int numRings = 3;
+if(numRings >= 5){
+    Console.WriteLine("You are welcome to join the party");
+}
+else if(numRings > 2 && numRings < 5){
+    Console.WriteLine($"Decent...but {numRings} rings aren't enough");
+}
+else{
+    Console.WriteLine("Go win some more rings");
+}
+
+int numRings1 = 5;
+int numOfAllStarAppearances = 17;
+if (numRings1 >= 5 || numOfAllStarAppearances > 3){
+    Console.WriteLine("Welcome, you are truly a legend");
+}
+else{
+    Console.WriteLine("Get back in the game");
+}
+
+bool crazy = false;
+if (!crazy){
+    Console.WriteLine("Let's party!");
+}
+
