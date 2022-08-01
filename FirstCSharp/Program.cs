@@ -69,3 +69,46 @@ for(int val = 0; val < 10; val++){
     Console.WriteLine(rand.Next(2,8));
 }
 
+int[] arrayOfInts = {1, 2, 3, 4, 5};
+Console.WriteLine(arrayOfInts[0]);    // The first number lives at index 0.
+Console.WriteLine(arrayOfInts[1]);    // The second number lives at index 1.
+Console.WriteLine(arrayOfInts[2]);    // The third number lives at index 2.
+Console.WriteLine(arrayOfInts[3]);    // The fourth number lives at index 3.
+Console.WriteLine(arrayOfInts[4]);    // The fifth and final number lives at index 4.
+
+int[] arr = {1, 2, 3, 4};
+Console.WriteLine($"The first number of the arr is {arr[0]}"); 
+arr[0] = 8;
+Console.WriteLine($"The first number of the arr is now {arr[0]}");
+
+
+string[] myCars = new string[] { "Mazda Miata", "Ford Model T", "Dodge Challenger", "Nissan 300zx"}; 
+foreach (string car in myCars){
+    Console.WriteLine($"I own a {car}");
+}
+
+List<string> cars = new List<string>();
+
+cars.Add("Mazda");
+cars.Add("BMW");
+cars.Add("Dodge");
+
+Console.WriteLine(cars[1]);
+
+Console.WriteLine($"We currently know of {cars.Count} car manufacturers");
+
+Console.WriteLine("The current car manufacturers we have seen are:");
+
+foreach(string car in cars){
+    Console.WriteLine("-" + car);
+}
+
+cars.Remove("Dodge");
+Console.WriteLine("We removed Dodge because no one likes them so: ");
+
+Console.WriteLine("New List: ");
+foreach (string car in cars){
+    Console.WriteLine("-" + car);
+}
+
+
