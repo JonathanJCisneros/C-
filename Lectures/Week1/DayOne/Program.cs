@@ -99,8 +99,10 @@ Console.WriteLine($"New numbers in shuffled list: {shuffledList.Count}");
 foreach(int num in shuffledList){
     Console.WriteLine(num);
 }
-List<int> someList = new List<int>(){2,3,4,5};
-Dictionary<int, List<int>> someDictionary = new Dictionary<int, List<int>>(){
+int[] someList = {2,3,4,5};
+
+
+Dictionary<int, int[]> someDictionary = new Dictionary<int, int[]>(){
     {1, someList}
 };
 
