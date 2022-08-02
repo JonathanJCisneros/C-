@@ -30,8 +30,16 @@ public class Card
         Value = value;
     }
 
+    public override string ToString()
+    {
+        return $@"
+        Name: {Name}
+        Suit: {Suit}
+        Value: {Value}";
+    }
+
     public void Print()
     {
-        Console.WriteLine($"Your card is {Value} of {Suit}");
+        Console.WriteLine($"Your card is {Value}{Name} of {Suit}");
     }
 }
