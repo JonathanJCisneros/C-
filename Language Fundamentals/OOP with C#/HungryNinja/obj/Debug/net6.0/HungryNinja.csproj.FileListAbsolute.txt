@@ -1,0 +1,15 @@
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\bin\Debug\net6.0\HungryNinja.exe
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\bin\Debug\net6.0\HungryNinja.deps.json
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\bin\Debug\net6.0\HungryNinja.runtimeconfig.json
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\bin\Debug\net6.0\HungryNinja.dll
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\bin\Debug\net6.0\HungryNinja.pdb
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\obj\Debug\net6.0\HungryNinja.csproj.AssemblyReference.cache
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\obj\Debug\net6.0\HungryNinja.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\obj\Debug\net6.0\HungryNinja.AssemblyInfoInputs.cache
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\obj\Debug\net6.0\HungryNinja.AssemblyInfo.cs
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\obj\Debug\net6.0\HungryNinja.csproj.CoreCompileInputs.cache
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\obj\Debug\net6.0\HungryNinja.dll
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\obj\Debug\net6.0\refint\HungryNinja.dll
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\obj\Debug\net6.0\HungryNinja.pdb
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\obj\Debug\net6.0\HungryNinja.genruntimeconfig.cache
+C:\Users\jonat\OneDrive\Documents\Coding Dojo\C#\Language Fundamentals\OOP with C#\HungryNinja\obj\Debug\net6.0\ref\HungryNinja.dll
