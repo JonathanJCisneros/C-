@@ -7,7 +7,8 @@ public class Lecture
 
     public string Topic {get; set;}
 
-    public Lecture(Instructor courseInstructor, List<Student> roster, string topic) {
+    public Lecture(Instructor courseInstructor, List<Student> roster, string topic) 
+    {
         CourseInstructor = courseInstructor;
         Roster = roster;
         Topic = topic;
