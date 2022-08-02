@@ -77,7 +77,7 @@ GetAverage(test2);
 // 7. Array with Odd Numbers
 
 static int[] OddArray(){
-    int[] numArray = new int[] { };
+    int[] numArray = new int[] {};
 
     List<int> temp = numArray.ToList();
     for (int i = 0; i <= 255; i++)
