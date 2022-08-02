@@ -83,6 +83,21 @@ MultiplicationTable(5);
 
 // 9. 
 
+static void Average(int num1, int num2, int num3, int num4)
+{
+    int avg = (num1 + num2 + num3 + num4) / 4;
+    Console.WriteLine(avg);
+}
 
+Average(2,2,2,2);
+
+// 10.
+
+static void CustomInput(int x, int y, int z)
+{
+    Console.WriteLine($"Result of {x}, {y} and {z}: (x + y).z is {(x + y)*z} and x.y + y.z is {x*y + y*z}");
+}
+
+CustomInput(5,6,7);
 
 
