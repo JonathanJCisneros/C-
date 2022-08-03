@@ -52,21 +52,6 @@ class SinglyLinkedList {
         return this.containsRecursive(val, current.next)
     }
 
-     // EXTRA
-    /**
-      * Recursively finds the maximum integer data of the nodes in this list.
-      * - Time: O(?).
-      * - Space: O(?).
-      * @param {ListNode} runner The start or current node during traversal, or null
-      *    when the end of the list is reached.
-      * @param {ListNode} maxNode Keeps track of the node that contains the current
-      *    max integer as it's data.
-      * @returns {?number} The max int or null if none.
-      */
-    recursiveMax(runner = this.head, maxNode = this.head) {
-        let max = number.Min_Value
-    }
-
     insertAtFront(data) {
         const newNode = new ListNode(data);
         newNode.next = this.head;
