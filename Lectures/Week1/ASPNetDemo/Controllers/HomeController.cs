@@ -21,4 +21,14 @@ public class HomeController : Controller
         ViewBag.Title = $"Here are {ViewBag.YoutubeVideoIds.Count} of my favorite videos";
         return View("Videos");
     }
+
+    [HttpGet("/showingModel")]
+    public IActionResult ModelDisplay()
+    {
+        List<int> myNums = new List<int>(){1,2,3};
+        MyModel someModel = new MyModel("squirtle", myNums);
+
+        ViewBag.MyModel = someModel;
+        return View();
+    }
 }
