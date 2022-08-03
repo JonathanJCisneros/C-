@@ -14,33 +14,43 @@ class SinglyLinkedList {
         this.head = null;
     }
 
-    /**
-     * Removes the last node of this list.
-     * - Time: O(?).
-     * - Space: O(?).
-     * @returns {any} The data from the node that was removed.
-     */
-    removeBack() {}
+    removeBack(){
+        if (this.isEmpty()){
+            return null;
+        }
+        if(this.head.next === null){
+            return this.removeHead();
+        }
+        let currentNode = this.head;
+        while(currentNode.next.next){
+            currentNode = currentNode.next;
+        }
+        const removedNode = currentNode.next;
+        currentNode.next = null;
+        return removedNode;
+    }
 
-    /**
-      * Determines whether or not the given search value exists in this list.
-      * - Time: O(?).
-      * - Space: O(?).
-      * @param {any} val The data to search for in the nodes of this list.
-      * @returns {boolean}
-      */
-    contains(val) {}
+    contains(val) {
+        let current = this.head;
 
-    /**
-      * Determines whether or not the given search value exists in this list.
-      * - Time: O(?).
-      * - Space: O(?).
-      * @param {any} val The data to search for in the nodes of this list.
-      * @param {?ListNode} current The current node during the traversal of this list
-      *    or null when the end of the list has been reached.
-      * @returns {boolean}
-      */
-    containsRecursive(val, current = this.head) {}
+        while(current !== null){
+            if(current.data == val){
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    containsRecursive(val, current = this.head) {
+        if(current === null){
+            return false;
+        }
+        if(current.data === val){
+            return true;
+        }
+        return this.containsRecursive(val, current.next)
+    }
 
      // EXTRA
     /**
@@ -53,7 +63,9 @@ class SinglyLinkedList {
       *    max integer as it's data.
       * @returns {?number} The max int or null if none.
       */
-    recursiveMax(runner = this.head, maxNode = this.head) {}
+    recursiveMax(runner = this.head, maxNode = this.head) {
+        let max = number.Min_Value
+    }
 
     insertAtFront(data) {
         const newNode = new ListNode(data);
@@ -135,26 +147,29 @@ class SinglyLinkedList {
 
 const emptyList = new SinglyLinkedList();
 
-const singleNodeList = new SinglyLinkedList().insertAtBackMany([1]);
-console.log(singleNodeList.toArr());
-const biNodeList = new SinglyLinkedList().insertAtBackMany([1, 2]);
-console.log(biNodeList.toArr());
-const firstThreeList = new SinglyLinkedList().insertAtBackMany([1, 2, 3]);
-console.log(firstThreeList.toArr());
-const secondThreeList = new SinglyLinkedList().insertAtBackMany([4, 5, 6]);
-console.log(secondThreeList.toArr());
-const unorderedList = new SinglyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2,]);
-console.log(unorderedList.toArr());
+// const singleNodeList = new SinglyLinkedList().insertAtBackMany([1]);
+// console.log(singleNodeList.toArr());
+// const biNodeList = new SinglyLinkedList().insertAtBackMany([1, 2]);
+// console.log(biNodeList.toArr());
+// const firstThreeList = new SinglyLinkedList().insertAtBackMany([1, 2, 3]);
+// console.log(firstThreeList.toArr());
+// const secondThreeList = new SinglyLinkedList().insertAtBackMany([4, 5, 6]);
+// console.log(secondThreeList.toArr());
+// const unorderedList = new SinglyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2,]);
+// console.log(unorderedList.toArr());
 
-/* node 4 connects to node 1, back to head */
-const perfectLoopList = new SinglyLinkedList().insertAtBackMany([1, 2, 3, 4]);
-perfectLoopList.head.next.next.next = perfectLoopList.head;
+const unorderedList1 = new SinglyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2]).containsRecursive(-4);
+console.log(unorderedList1);
 
-/* node 4 connects to node 2 */
-const loopList = new SinglyLinkedList().insertAtBackMany([1, 2, 3, 4]);
-loopList.head.next.next.next = loopList.head.next;
+// /* node 4 connects to node 1, back to head */
+// const perfectLoopList = new SinglyLinkedList().insertAtBackMany([1, 2, 3, 4]);
+// perfectLoopList.head.next.next.next = perfectLoopList.head;
 
-const sortedDupeList = new SinglyLinkedList().insertAtBackMany([1, 1, 1, 2, 3, 3, 4, 5, 5,]);
+// /* node 4 connects to node 2 */
+// const loopList = new SinglyLinkedList().insertAtBackMany([1, 2, 3, 4]);
+// loopList.head.next.next.next = loopList.head.next;
 
-// Print your list like so:
-console.log(firstThreeList.toArr());
+// const sortedDupeList = new SinglyLinkedList().insertAtBackMany([1, 1, 1, 2, 3, 3, 4, 5, 5,]);
+
+// // Print your list like so:
+// console.log(firstThreeList.toArr());
