@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "O4R5DqOqLV1Tv2oUx//ooE6FWG7ukPO13CGQksIUQfg=",
+  "Source": "ASPNetDemo",
+  "BasePath": "_content/ASPNetDemo",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ASPNetDemo\\wwwroot",
+      "Source": "ASPNetDemo",
+      "ContentRoot": "C:\\Users\\jonat\\OneDrive\\Documents\\Coding Dojo\\C#\\Lectures\\Week1\\ASPNetDemo\\wwwroot\\",
+      "BasePath": "_content/ASPNetDemo",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\jonat\\OneDrive\\Documents\\Coding Dojo\\C#\\Lectures\\Week1\\ASPNetDemo\\wwwroot\\css\\style.css",
+      "SourceId": "ASPNetDemo",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\jonat\\OneDrive\\Documents\\Coding Dojo\\C#\\Lectures\\Week1\\ASPNetDemo\\wwwroot\\",
+      "BasePath": "_content/ASPNetDemo",
+      "RelativePath": "css/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style.css"
+    }
+  ]
+}
