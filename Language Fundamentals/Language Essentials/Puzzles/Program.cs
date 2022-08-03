@@ -9,7 +9,7 @@ static int[] RandomArray()
     Random rand = new Random();
     for(int i = 0; i < newArray.Length; i++)
     {
-        newArray[i] = rand.Next(5, 25);
+        newArray[i] = rand.Next(5, 26);
         sum += newArray[i];
         if(newArray[i] > max)
         {
