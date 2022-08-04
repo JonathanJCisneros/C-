@@ -14,6 +14,50 @@ class SinglyLinkedList {
         this.head = null;
     }
 
+    secondToLast() {
+        if(this.isEmpty() || this.head.next === null){
+            return null;
+        }
+        let currentNode = this.head;
+        while(currentNode.next.next !== null){
+            currentNode = currentNode.next;
+        }
+        return currentNode.data;
+    }
+    
+    removeVal(val) {
+        if(this.isEmpty()){
+            return null;
+        }
+        let previousNode = this.head;
+        let currentNode = this.head.next;
+        if(previousNode.data === val){
+            this.removeHead();
+            return true;
+        }
+        while(currentNode){
+            if(currentNode.data === val){
+                previousNode.next = currentNode.next;
+                return true;
+            }
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+        }
+        return false;
+    }
+
+     // EXTRA
+    /**
+      * Inserts a new node before a node that has the given value as its data.
+      * - Time: O(?).
+      * - Space: O(?).
+      * @param {any} newVal The value to use for the new node that is being added.
+      * @param {any} targetVal The value to use to find the node that the newVal
+      *    should be inserted in front of.
+      * @returns {boolean} To indicate whether the node was pre-pended or not.
+      */
+    prepend(newVal, targetVal) {}
+
     removeBack(){
         if (this.isEmpty()){
             return null;
@@ -50,6 +94,19 @@ class SinglyLinkedList {
             return true;
         }
         return this.containsRecursive(val, current.next)
+    }
+
+    recursiveMax(runner = this.head, maxNode = this.head) {
+        if (this.head === null) {
+            return null;
+        }
+        if (runner === null) {
+            return maxNode.data;
+        }
+        if (runner.data > maxNode.data) {
+            maxNode = runner;
+        }
+        return this.recursiveMax(runner.next, maxNode);
     }
 
     insertAtFront(data) {
@@ -143,7 +200,7 @@ const emptyList = new SinglyLinkedList();
 // const unorderedList = new SinglyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2,]);
 // console.log(unorderedList.toArr());
 
-const unorderedList1 = new SinglyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2]).containsRecursive(-4);
+const unorderedList1 = new SinglyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2]).removeVal(6);
 console.log(unorderedList1);
 
 // /* node 4 connects to node 1, back to head */
