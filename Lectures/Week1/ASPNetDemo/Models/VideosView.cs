@@ -1,3 +1,5 @@
+namespace ASPNetDemo.Models;
+
 public class VideosView
 {
     public List<string> YoutubeVideoIds = new List<string>

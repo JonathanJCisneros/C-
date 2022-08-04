@@ -1,0 +1,15 @@
+@model User
+
+<h2>Register</h2>
+
+<form action="/users/process-registration" method="POST">
+    <div>
+        <label for="FirstName">First Name</label>
+        <input type="text" name="FirstName">
+    </div>
+    <div>
+        <label for="LastName">Last Name</label>
+        <input type="text" name="LastName">
+    </div>
+    <button type="submit">Submit</button>
+</form>

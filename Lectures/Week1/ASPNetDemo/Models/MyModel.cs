@@ -1,3 +1,4 @@
+namespace ASPNetDemo.Models;
 
 public class MyModel 
 {

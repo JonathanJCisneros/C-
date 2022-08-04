@@ -1,3 +1,4 @@
+using ASPNetDemo.Models;
 using Microsoft.AspNetCore.Mvc;
 // Inherit from abstract base controller class
 // inherits helpful methods for handling HTTP req/res cycle
