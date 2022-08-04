@@ -1,0 +1,44 @@
+@model User
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form</title>
+    </head>
+    <body>
+        <form action="/" method="POST">
+            <div>
+                <span asp-validation-for="FirstName"></span>
+                <br>
+                <label asp-for="FirstName">First Name</label>
+                <input type="text" asp-for="FirstName">
+            </div>
+            <div>
+                <span asp-validation-for="LastName"></span>
+                <br>
+                <label asp-for="LastName">Last Name</label>
+                <input type="text" asp-for="LastName">
+            </div>
+            <div>
+                <span asp-validation-for="Age"></span>
+                <br>
+                <label asp-for="Age">Age</label>
+                <input type="number" asp-for="Age">
+            </div>
+            <div>
+                <span asp-validation-for="Email"></span>
+                <label asp-for="Email">Email</label>
+                <input type="text" asp-for="Email">
+            </div>
+            <div>
+                <span asp-validation-for="Password"></span>
+                
+                <label asp-for="Password">Password</label>
+                <input type="password" asp-for="Password">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
