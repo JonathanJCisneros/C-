@@ -1,0 +1,16 @@
+@model StoryFragment
+<h1>Successfull!</h1>
+
+<p>Here is the story so far...</p>
+<p>@Context.Session.GetString("story")</p>
+<p>Thank you @Context.Session.GetString("username") for joining us for story time!</p>
+
+<form asp-controller="Home" asp-action="AddToStory" method="POST">
+    <div class="form-group">
+        <label asp-for="Word"></label>
+        <span asp-validation-for="Word" class="text-danger"></span>
+        <input asp-for="Word" class="form-control">
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
