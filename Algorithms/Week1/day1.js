@@ -14,6 +14,70 @@ class SinglyLinkedList {
         this.head = null;
     }
 
+    /**
+     * Concatenates the nodes of a given list onto the back of this list.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {SinglyLinkedList} addList An instance of a different list whose
+     *    whose nodes will be added to the back of this list.
+     * @returns {SinglyLinkedList} This list with the added nodes.
+     */
+    concat(addList) {
+        if(this.isEmpty()){
+            this.head = addList;
+            return this;
+        }
+        let current = this.head;
+        while(current.next){
+            current = current.next;
+        }
+        current.next = addList.head;
+        return this;
+    }
+
+    /**
+      * Finds the node with the smallest data and moves that node to the front of
+      * this list.
+      * - Time: O(?).
+      * - Space: O(?).
+      * @returns {SinglyLinkedList} This list.
+      */
+    // moveMinToFront() {
+    //     if(this.isEmpty()){
+    //         return null;
+    //     }
+    //     let runner = this.head;
+    //     let min = runner.data;
+
+    //     while(runner.next){
+    //         if(runner.data < min){
+    //             min = runner.data
+    //         }
+    //     }
+    //     let creeper = this.head;
+    //     if(creeper.data == min) return this;
+
+    //     runner = creeper.next;
+
+    //     while(runner.next){
+
+    //     }
+    // }
+
+     // EXTRA
+    /**
+      * Splits this list into two lists where the 2nd list starts with the node
+      * that has the given value.
+      * splitOnVal(5) for the list (1=>3=>5=>2=>4) will change list to (1=>3)
+      * and the return value will be a new list containing (5=>2=>4)
+      * - Time: O(?).
+      * - Space: O(?).
+      * @param {any} val The value in the node that the list should be split on.
+      * @returns {SinglyLinkedList} The split list containing the nodes that are
+      *    no longer in this list.
+      */
+    splitOnVal(val) {}
+
     secondToLast() {
         if(this.isEmpty() || this.head.next === null){
             return null;
@@ -45,18 +109,6 @@ class SinglyLinkedList {
         }
         return false;
     }
-
-     // EXTRA
-    /**
-      * Inserts a new node before a node that has the given value as its data.
-      * - Time: O(?).
-      * - Space: O(?).
-      * @param {any} newVal The value to use for the new node that is being added.
-      * @param {any} targetVal The value to use to find the node that the newVal
-      *    should be inserted in front of.
-      * @returns {boolean} To indicate whether the node was pre-pended or not.
-      */
-    prepend(newVal, targetVal) {}
 
     removeBack(){
         if (this.isEmpty()){
@@ -191,7 +243,7 @@ const emptyList = new SinglyLinkedList();
 
 // const singleNodeList = new SinglyLinkedList().insertAtBackMany([1]);
 // console.log(singleNodeList.toArr());
-// const biNodeList = new SinglyLinkedList().insertAtBackMany([1, 2]);
+const biNodeList = new SinglyLinkedList().insertAtBackMany([1, 2]);
 // console.log(biNodeList.toArr());
 // const firstThreeList = new SinglyLinkedList().insertAtBackMany([1, 2, 3]);
 // console.log(firstThreeList.toArr());
@@ -200,8 +252,8 @@ const emptyList = new SinglyLinkedList();
 // const unorderedList = new SinglyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2,]);
 // console.log(unorderedList.toArr());
 
-const unorderedList1 = new SinglyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2]).removeVal(6);
-console.log(unorderedList1);
+const unorderedList1 = new SinglyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2]).concat(biNodeList);
+console.log(unorderedList1.toArr());
 
 // /* node 4 connects to node 1, back to head */
 // const perfectLoopList = new SinglyLinkedList().insertAtBackMany([1, 2, 3, 4]);
