@@ -19,7 +19,7 @@ public class UserController : Controller
         }
         else
         {
-            return View("Register");
+            return Form();
         }
     }
 

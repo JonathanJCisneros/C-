@@ -8,6 +8,8 @@ public class User
     [MinLength(2)]
     public string Name {get; set;}
     public string Location {get; set;}
+    
+    [Display(Name = "Favorite Language")]
     public string FaveLang {get; set;}
     
     [MinLength(20)]

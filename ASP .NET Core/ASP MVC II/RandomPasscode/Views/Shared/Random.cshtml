@@ -1,12 +1,17 @@
+@model Passcode
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Random Passcode</title>
+        <title>Random Passcode Generator</title>
     </head>
     <body>
-        <h1>Random </h1>
+        <h1>Random Passcode(passcode #@Context.Session.GetInt32("amount"))</h1>
+        <h3>@Model.GenerateString()</h3>
+        <form action="/addCount" method="POST">
+            <button class="btn btn-outline-success">Generate</button>
+        </form>
     </body>
 </html>
