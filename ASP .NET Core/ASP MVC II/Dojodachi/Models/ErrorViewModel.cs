@@ -1,4 +1,4 @@
-namespace Dojodachi.Models;
+namespace DojodachiGame.Models;
 
 public class ErrorViewModel
 {
