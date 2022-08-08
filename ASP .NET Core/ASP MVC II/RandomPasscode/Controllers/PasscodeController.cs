@@ -9,7 +9,10 @@ public class PasscodeController : Controller
     public IActionResult Generate()
     {
         int? Count = HttpContext.Session.GetInt32("amount");
-        if(Count == null) HttpContext.Session.SetInt32("amount", 1);
+        if(Count == null)
+        {
+            HttpContext.Session.SetInt32("amount", 1);
+        }
         Passcode newPasscode = new Passcode();
         return View("Random", newPasscode);
     }
@@ -18,7 +21,6 @@ public class PasscodeController : Controller
     public IActionResult AddCount()
     {
         int? PassCount = HttpContext.Session.GetInt32("amount");
-
         if (PassCount == null)
         {
             PassCount = 1;
@@ -27,7 +29,6 @@ public class PasscodeController : Controller
         {
             PassCount += 1;
         }
-
         HttpContext.Session.SetInt32("amount", (int)PassCount);
         return RedirectToAction("Generate");
     }
