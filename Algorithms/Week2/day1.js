@@ -14,8 +14,54 @@ class BinarySearchTree {
     constructor() {
         this.root = null;
     }
+
+
+    contains(searchVal) {
+        if(this.isEmpty()){
+            return false;
+        }
+        let current = this.root
+        while (current) {
+            if(current.data === searchVal){
+                return true;
+            }
+            if(searchVal < current.data){
+                current = current.left;
+            } 
+            else{
+                current = current.right;
+            }
+        }
+        return false;
+    }
+
+
+    containsRecursive(searchVal, current = this.root) {
+        if(this.isEmpty() || current === null){
+            return false;
+        }
+        if(current.data === searchVal){
+            return true;
+        }
+        if(searchVal < current.data){
+            return this.containsRecursive(searchVal, current.left)
+        }
+        if(searchVal > current.data){
+            return this.containsRecursive(searchVal, current.right)
+        }
+    }
+
+
+    range(startNode = this.root) {
+        if(startNode === null){
+            return 0;
+        }
+        return this.max(startNode) - this.min(startNode);
+    }
+
+
     isEmpty() {
-        return this.root = null;
+        return this.root === null;
     }
 
 
@@ -23,10 +69,21 @@ class BinarySearchTree {
         if(this.isEmpty()){
             return null;
         }
-        while(current){
+        while(current.left){
             current = current.left;
         }
         return current.data;
+    }
+
+
+    minRecursive(current = this.root) {
+        if (current === null) {
+            return null;
+        }
+        if (current.left === null) {
+            return current.data;
+        }
+        return this.minRecursive(current.left);
     }
 
 
@@ -34,26 +91,21 @@ class BinarySearchTree {
         if(this.isEmpty()){
             return null;
         }
-        while(current){
+        while(current.right){
             current = current.right;
         }
         return current.data;
     }
 
 
-    contains(searchVal) {
-        let current = this.root
-        while (current) {
-            if (current.data === searchVal) {
-                return true
-            }
-            if (searchVal<current.data) {
-                current = current.left
-            } else {
-                current = current.right
-            }
+    maxRecursive(current = this.root) {
+        if (current === null) {
+            return null;
         }
-        return false
+        if (current.right === null) {
+            return current.data;
+        }
+        return this.maxRecursive(current.right);
     }
 
 
@@ -83,7 +135,7 @@ const twoLevelTree = new BinarySearchTree();
 twoLevelTree.root = new BSTNode(10);
 twoLevelTree.root.left = new BSTNode(5);
 twoLevelTree.root.right = new BSTNode(15);
-console.log(twoLevelTree.insert(20));
+console.log(twoLevelTree.range());
 
 /* threeLevelTree 
         root
@@ -100,7 +152,6 @@ threeLevelTree.root.left.left = new BSTNode(2);
 threeLevelTree.root.left.right = new BSTNode(6);
 threeLevelTree.root.right = new BSTNode(15);
 threeLevelTree.root.right.left = new BSTNode(13);
-console.log(threeLevelTree.insert(20));
 
 /* fullTree
                     root
