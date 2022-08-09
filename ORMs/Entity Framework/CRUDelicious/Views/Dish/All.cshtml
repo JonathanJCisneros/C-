@@ -1,0 +1,21 @@
+@model List<Dish>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>All Dishes</title>
+    </head>
+    <body>
+        <h1 style="text-align: center;">Welcome to CRUDelicious</h1> 
+        <div style="display: flex; align-items: center; justify-content: space-evenly;">
+            <h3>Check out some recent dishes!</h3> <a href="/new">Add a Dish</a>
+        </div>
+
+        @foreach(Dish d in Model)
+        {
+            <h4><a href="/@d.DishId">@d.Name</a> by @d.Chef</h4>
+        }        
+    </body>
+</html>

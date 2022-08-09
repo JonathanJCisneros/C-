@@ -1,0 +1,19 @@
+@model Dish
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <a href="/">Home</a>
+        <h1 style="text-align: center;">@Model.Name</h1>
+        <h3 style="text-align: center;">@Model.Chef</h3>
+        <hr>
+        <p>@Model.Description</p>
+        <p>Calories: @Model.Calories</p>
+        <p>Tastiness: @Model.Tastiness</p>
+    </body>
+</html>
