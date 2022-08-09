@@ -1,0 +1,31 @@
+@model Post
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+</head>
+<body>
+    <form asp-controller="Post" asp-action="Update" method="POST">
+        <input type="hidden" asp-for="PostId" value="@Model.PostId">
+        <div>
+            <label asp-for="Topic"></label>
+            <span asp-validation-for="Topic"></span>
+            <input asp-for="Topic" value="@Model.Topic">
+        </div>
+        <div>
+            <label asp-for="Body"></label>
+            <span asp-validation-for="Body"></span>
+            <input asp-for="Body" value="@Model.Body">
+        </div>
+        <div>
+            <label asp-for="ImgUrl"></label>
+            <input asp-for="ImgUrl" value="@Model.ImgUrl">
+        </div>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

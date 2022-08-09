@@ -21,6 +21,7 @@
                 {
                 <img src="@item.ImgUrl" alt="No Image Here lol">
                 }
+                <a asp-controller="Post" asp-action="GetOne" asp-route-postId="@item.PostId">View Details</a>
             </div>
         }
     }
