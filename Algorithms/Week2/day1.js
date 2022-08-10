@@ -16,6 +16,61 @@ class BinarySearchTree {
     }
 
 
+    insert(newVal) {
+        let insertNode = new BSTNode(newVal);
+        let current = this.root;
+        
+        if(this.isEmpty() || current.data === newVal){
+            return insertNode;
+        }
+        
+        while(current){
+            if(current.data < newVal){
+                if(current.right){
+                    current = current.right;
+                }
+                else{
+                    current.right = insertNode;
+                    return this
+                }
+            }
+            if(current.data > newVal){
+                if(current.left){
+                    current = current.left;
+                }
+                else{
+                    current.left = insertNode;
+                    return this
+                }
+            }
+        }
+    }
+
+
+    insertRecursive(newVal, curr = this.root) {
+        const node = new BSTNode(newVal);
+
+        if(this.isEmpty()){
+            this.root = node;
+            return this;
+        }
+        if(newVal < current.data){
+            if(current.left === null){
+                current.left = node;
+                return this;
+            }
+            return this.insertRecursive(newVal, current.left);
+        }
+        if(newVal > current.data){
+            if(current.right === null){
+                current.right = node;
+                return this;
+            }
+            return this.insertRecursive(newVal, current.right);
+        }
+    }
+
+
     contains(searchVal) {
         if(this.isEmpty()){
             return false;
@@ -135,7 +190,8 @@ const twoLevelTree = new BinarySearchTree();
 twoLevelTree.root = new BSTNode(10);
 twoLevelTree.root.left = new BSTNode(5);
 twoLevelTree.root.right = new BSTNode(15);
-console.log(twoLevelTree.range());
+twoLevelTree.insert(4);
+console.log(twoLevelTree.print());
 
 /* threeLevelTree 
         root
@@ -164,19 +220,21 @@ threeLevelTree.root.right.left = new BSTNode(13);
     4    12  18  24  31  44 66  90
 */
 /***************** Uncomment after insert method is created. ****************/
-// const fullTree = new BinarySearchTree();
-// console.log(fullTree.insert(25));
-//     // .insert(15)
-//     // .insert(10)
-//     // .insert(22)
-//     // .insert(4)
-//     // .insert(12)
-//     // .insert(18)
-//     // .insert(24)
-//     // .insert(50)
-//     // .insert(35)
-//     // .insert(70)
-//     // .insert(31)
-//     // .insert(44)
-//     // .insert(66)
-//     // .insert(90));
+const fullTree = new BinarySearchTree();
+// fullTree.insert(25).insert(15)
+    
+    // .insert(10)
+    // .insert(22)
+    // .insert(4)
+    // .insert(12)
+    // .insert(18)
+    // .insert(24)
+    // .insert(50)
+    // .insert(35)
+    // .insert(70)
+    // .insert(31)
+    // .insert(44)
+    // .insert(66)
+    // .insert(90)
+
+    // console.log(fullTree.print())
