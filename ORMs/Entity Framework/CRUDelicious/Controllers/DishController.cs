@@ -53,6 +53,10 @@ public class DishController : Controller
     public IActionResult Edit(int dishId)
     {
         Dish editDish = _context.Dishes.First(dish => dish.DishId == dishId);
+        if(editDish == null)
+        {
+            return RedirectToAction("All");
+        }
         return View("NewOrUpdate", editDish);
     }
 
@@ -85,15 +89,15 @@ public class DishController : Controller
     public IActionResult Delete(int dishId)
     {
         Dish? deleteDish = _context.Dishes.FirstOrDefault(dish => dish.DishId == dishId);
-            if(deleteDish == null)
-            {
-                return RedirectToAction("All");
-            }
-            else
-            {
-                _context.Dishes.Remove(deleteDish);
-                _context.SaveChanges();
-                return RedirectToAction("All");
-            }
+        if(deleteDish == null)
+        {
+            return RedirectToAction("All");
+        }
+        else
+        {
+            _context.Dishes.Remove(deleteDish);
+            _context.SaveChanges();
+            return RedirectToAction("All");
+        }
     }
 }
