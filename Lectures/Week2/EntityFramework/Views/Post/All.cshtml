@@ -9,6 +9,7 @@
     <title>All Posts</title>
 </head>
 <body>
+    <h3>Welcome @Context.Session.GetString("name"), ID: @Context.Session.GetInt32("UUID")</h3>
     <h1>View our posts</h1>
     @{
         foreach (Post item in Model)

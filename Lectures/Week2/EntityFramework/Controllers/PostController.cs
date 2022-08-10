@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using EntityFramework.Models;
 namespace EntityFramework.Controllers;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
     
 public class PostController : Controller
 {
@@ -13,10 +14,30 @@ public class PostController : Controller
     {
         _context = context;
     }
-    [HttpGet("/")]
+
+    private int? uid
+    {
+        get
+        {
+            return HttpContext.Session.GetInt32("UUID");
+        }
+    }
+
+    private bool loggedIn
+    {
+        get
+        {
+            return uid != null;
+        }
+    }
+
     [HttpGet("/posts/all")]
     public IActionResult All()
     {
+        if(!loggedIn)
+        {
+            return RedirectToAction("Index", "User");
+        }
         List<Post> AllPosts = _context.Posts.ToList();
 
         return View("All", AllPosts);
@@ -25,12 +46,20 @@ public class PostController : Controller
     [HttpGet("/post/new")]
     public IActionResult New()
     {
+        if(!loggedIn)
+        {
+            return RedirectToAction("Index", "User");
+        }
         return View("New");
     }
 
     [HttpPost("/post/create")]
     public IActionResult Create(Post newPost)
     {
+        if(!loggedIn)
+        {
+            return RedirectToAction("Index", "User");
+        }
         if(ModelState.IsValid == false)
         {
             return New();
@@ -43,6 +72,10 @@ public class PostController : Controller
     [HttpGet("/post/{postId}")]
     public IActionResult GetOne(int postId)
     {
+        if(!loggedIn)
+        {
+            return RedirectToAction("Index", "User");
+        }
         Post? thisPost = _context.Posts.FirstOrDefault(post => post.PostId == postId);
         if(thisPost == null)
         {
@@ -54,6 +87,10 @@ public class PostController : Controller
     [HttpPost("/posts/{deletedPostId}/delete")]
     public IActionResult Delete(int deletedPostId)
     {
+        if(!loggedIn)
+        {
+            return RedirectToAction("Index", "User");
+        }
         Post? post = _context.Posts.FirstOrDefault(post => post.PostId == deletedPostId);
         if(post != null)
         {
@@ -66,6 +103,10 @@ public class PostController : Controller
     [HttpGet("/posts/{postToBeEdited}")]
     public IActionResult EditPost(int postToBeEdited)
     {
+        if(!loggedIn)
+        {
+            return RedirectToAction("Index", "User");
+        }
         Post? editedPost = _context.Posts.FirstOrDefault(post => post.PostId == postToBeEdited);
         if(editedPost == null)
         {
@@ -77,6 +118,10 @@ public class PostController : Controller
     [HttpPost("/post/update")]
     public IActionResult Update(Post editedPost)
     {
+        if(!loggedIn)
+        {
+            return RedirectToAction("Index", "User");
+        }
         if(ModelState.IsValid)
         {
             Post? dbPost = _context.Posts.FirstOrDefault(post => post.PostId == editedPost.PostId);
