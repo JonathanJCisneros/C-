@@ -15,7 +15,7 @@
 
         @foreach(Dish d in Model)
         {
-            <h4><a href="/@d.DishId">@d.Name</a> by @d.Chef</h4>
+            <h4><a asp-controller="Dish" asp-action="GetOne" asp-route-dishId="@d.DishId">@d.Name</a> by @d.Chef</h4>
         }        
     </body>
 </html>

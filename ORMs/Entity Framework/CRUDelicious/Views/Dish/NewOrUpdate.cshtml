@@ -6,36 +6,36 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>@(@Model != null? "Edit Dish!": "New Dish!")</title>
     </head>
     <body>
-        <h1 style="text-align: center;">Add a new Dish!</h1>
+        <h1 style="text-align: center;">@(@Model != null? "Edit Dish!": "New Dish!")</h1>
         <a href="/">Home</a>
 
-        <form  asp-controller="Dish" asp-action="Create" method="POST">
+        <form  asp-controller="Dish" asp-action="@(@Model != null? "Update" : "Create")" asp-route-dishId="@(@Model != null? @Model.DishId : "")" method="POST">
             <div style="display: flex;">
                 <div style="flex: 1;">
                     <div>
                         <label asp-for="Chef"></label>
                         <span asp-validation-for="Chef"></span>
-                        <input asp-for="Chef" >
+                        <input asp-for="Chef" value="@(@Model != null? @Model.Chef :"")">
                     </div>
                     <div>
                         <label asp-for="Name"></label>
                         <span asp-validation-for="Name"></span>
-                        <input asp-for="Name" >
+                        <input asp-for="Name" value="@(@Model != null? @Model.Name :"")">
                     </div>
                     <div>
                         <label asp-for="Calories"></label>
                         <span asp-validation-for="Calories"></span>
-                        <input asp-for="Calories">
+                        <input asp-for="Calories" value="@(@Model != null? @Model.Calories :"")">
                     </div>
                 </div>
                 <div style="flex: 1;">
                     <div>
                         <label asp-for="Tastiness"></label>
                         <span asp-validation-for="Tastiness"></span>
-                        <select asp-for="Tastiness">
+                        <select asp-for="Tastiness" value="@(@Model != null? @Model.Tastiness :"")">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -48,11 +48,11 @@
                     <div>
                         <label asp-for="Description"></label>
                         <span asp-validation-for="Description"></span>
-                        <textarea asp-for="Description" rows="5" cols="50"></textarea>
+                        <textarea asp-for="Description" rows="5" cols="50" value="@(@Model != null? @Model.Description :"")"></textarea>
                     </div>
                 </div>
             </div>
-            <button type="submit">Add Dish</button>
+            <button type="submit">@(@Model != null? "Edit Dish": "New Dish")</button>
         </form>
     </body>
 </html>

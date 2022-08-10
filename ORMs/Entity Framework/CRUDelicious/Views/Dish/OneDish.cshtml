@@ -15,5 +15,7 @@
         <p>@Model.Description</p>
         <p>Calories: @Model.Calories</p>
         <p>Tastiness: @Model.Tastiness</p>
+        <a asp-controller="Dish" asp-action="Edit" asp-route-dishId="@Model.DishId">Edit</a>
+        <a asp-controller="Dish" asp-action="Delete" asp-route-dishId="@Model.DishId">Delete</a>
     </body>
 </html>

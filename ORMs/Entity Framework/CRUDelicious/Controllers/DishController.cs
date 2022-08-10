@@ -23,7 +23,7 @@ public class DishController : Controller
     [HttpGet("/new")]
     public IActionResult New()
     {
-        return View("NewDish");
+        return View("NewOrUpdate");
     }
 
     [HttpPost("/dish/new")]
@@ -38,10 +38,14 @@ public class DishController : Controller
         return RedirectToAction("All");
     }
 
-    [HttpGet("/{dishId}")]
+    [HttpGet("/dish/{dishId}")]
     public IActionResult GetOne(int dishId)
     {
-        Dish theDish = _context.Dishes.First(dish => dish.DishId == dishId);
+        Dish? theDish = _context.Dishes.FirstOrDefault(dish => dish.DishId == dishId);
+        if(theDish == null)
+        {
+            return RedirectToAction("All");
+        }
         return View("OneDish", theDish);
     }
 
@@ -49,20 +53,47 @@ public class DishController : Controller
     public IActionResult Edit(int dishId)
     {
         Dish editDish = _context.Dishes.First(dish => dish.DishId == dishId);
-        return View("NewDish", editDish);
+        return View("NewOrUpdate", editDish);
     }
 
-    [HttpPost("/updated/{dishId}")]
+    [HttpPost("/edited/{dishId}")]
     public IActionResult Update(int dishId, Dish UpdatedDish)
     {
-        Dish retrievedDish = _context.Dishes.First(dish => dish.DishId == dishId);
-        retrievedDish.Name = UpdatedDish.Name;
-        retrievedDish.Chef = UpdatedDish.Chef;
-        retrievedDish.Calories = UpdatedDish.Calories;
-        retrievedDish.Tastiness = UpdatedDish.Tastiness;
-        retrievedDish.Description = UpdatedDish.Description;
-        retrievedDish.UpdatedAt = DateTime.Now;
-        _context.SaveChanges();
-        return RedirectToAction("GetOne", dishId);
+        if(ModelState.IsValid)
+        {
+            Dish? retrievedDish = _context.Dishes.FirstOrDefault(dish => dish.DishId == dishId);
+            if(retrievedDish == null)
+            {
+                return RedirectToAction("All");
+            }
+            retrievedDish.Name = UpdatedDish.Name;
+            retrievedDish.Chef = UpdatedDish.Chef;
+            retrievedDish.Calories = UpdatedDish.Calories;
+            retrievedDish.Tastiness = UpdatedDish.Tastiness;
+            retrievedDish.Description = UpdatedDish.Description;
+            retrievedDish.UpdatedAt = DateTime.Now;
+            _context.Dishes.Update(retrievedDish);
+            _context.SaveChanges();
+            return RedirectToAction("GetOne", new {dishId = dishId});
+        }
+        else
+        {
+            return Edit(dishId);
+        }
+    }
+    [HttpGet("/delete/{dishId}")]
+    public IActionResult Delete(int dishId)
+    {
+        Dish? deleteDish = _context.Dishes.FirstOrDefault(dish => dish.DishId == dishId);
+            if(deleteDish == null)
+            {
+                return RedirectToAction("All");
+            }
+            else
+            {
+                _context.Dishes.Remove(deleteDish);
+                _context.SaveChanges();
+                return RedirectToAction("All");
+            }
     }
 }
