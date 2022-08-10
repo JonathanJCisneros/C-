@@ -20,7 +20,7 @@ Add to appsettings.json:
   "AllowedHosts": "*",
     "ConnectionStrings":
     {
-        "DefaultConnection": "Server=localhost;port=3306;userid=root;password=root;database=monsterdb;"
+        "DefaultConnection": "Server=localhost;port=3306;userid=root;password=root;database=*Database*db;"
     }
 }
 
