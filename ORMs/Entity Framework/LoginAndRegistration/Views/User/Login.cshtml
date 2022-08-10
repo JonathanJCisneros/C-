@@ -1,0 +1,30 @@
+@model LoginUser
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <form asp-controller="User" asp-action="Login" method="Post">
+            <div style="display: flex; align-items: center; justify-content: space-between">
+                <h3>Login</h3>
+                <a asp-controller="User" asp-action="Index">Register</a>
+            </div>
+            <div>
+                <label asp-for="LoginEmail"></label>
+                <span asp-validation-for="LoginEmail"></span>
+                <input asp-for="LoginEmail">
+            </div>
+            <div>
+                <label asp-for="LoginPassword"></label>
+                <span asp-validation-for="LoginPassword"></span>
+                <input asp-for="LoginPassword">
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </body>
+</html>
