@@ -1,5 +1,5 @@
 #pragma warning disable CS8618
-namespace EntityFrameworkDemo.Models;
+namespace LoginAndRegistration.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

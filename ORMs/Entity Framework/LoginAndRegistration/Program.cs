@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using EntityFrameworkDemo.Models;
+using LoginAndRegistration.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpContextAccessor();
@@ -7,7 +7,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<EFLectureContext>(options =>
+builder.Services.AddDbContext<LogRegContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });

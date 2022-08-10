@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using EntityFramework.Models;
-namespace EntityFramework.Controllers;
+using EntityFrameworkDemo.Models;
+namespace EntityFrameworkDemo.Controllers;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
     

@@ -1,7 +1,7 @@
 #pragma warning disable CS8618
 
 using Microsoft.EntityFrameworkCore;
-namespace EntityFramework.Models;
+namespace EntityFrameworkDemo.Models;
 
 public class EFLectureContext : DbContext 
 { 

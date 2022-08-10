@@ -1,7 +1,7 @@
 #pragma warning disable CS8618
 using System.ComponentModel.DataAnnotations;
-
-namespace EntityFramework.Models;
+using System.ComponentModel.DataAnnotations.Schema;
+namespace EntityFrameworkDemo.Models;
 
 public class Post
 {

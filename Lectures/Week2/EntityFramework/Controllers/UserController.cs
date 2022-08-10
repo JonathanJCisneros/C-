@@ -1,20 +1,13 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using EntityFramework.Models;
-namespace EntityFramework.Controllers;
+using EntityFrameworkDemo.Models;
+namespace EntityFrameworkDemo.Controllers;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 
 public class UserController : Controller
 {
-    private EFLectureContext db;
-
-    public UserController(EFLectureContext context)
-    {
-        db = context;
-    }
-
     private int? uid
     {
         get
@@ -30,6 +23,13 @@ public class UserController : Controller
             return uid != null;
         }
     }
+    private EFLectureContext db;
+
+    public UserController(EFLectureContext context)
+    {
+        db = context;
+    }
+
 
     [HttpGet("/")]
     public IActionResult Index()

@@ -1,5 +1,5 @@
 #pragma warning disable CS8618
-namespace EntityFrameworkDemo.Models;
+namespace LoginAndRegistration.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -38,8 +38,4 @@ public class User
     public DateTime CreatedAt {get; set;} = DateTime.Now;
     public DateTime UpdatedAt {get; set;} = DateTime.Now;
 
-    public string FullName()
-    {
-        return $"{FirstName} {LastName}";
-    }
 }
