@@ -52,7 +52,7 @@ public class DishController : Controller
     [HttpGet("/update/{dishId}")]
     public IActionResult Edit(int dishId)
     {
-        Dish editDish = _context.Dishes.First(dish => dish.DishId == dishId);
+        Dish? editDish = _context.Dishes.FirstOrDefault(dish => dish.DishId == dishId);
         if(editDish == null)
         {
             return RedirectToAction("All");
