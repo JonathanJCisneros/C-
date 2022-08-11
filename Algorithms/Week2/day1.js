@@ -16,14 +16,44 @@ class BinarySearchTree {
     }
 
 
+    toArrPreorder(node = this.root, vals = []) {
+        if(node){
+            vals.push(node.data);
+            this.toArrPreorder(node.left, vals);
+            this.toArrPreorder(node.right, vals);
+        }
+        return vals;
+    }
+
+
+    toArrInorder(node = this.root, vals = []) {
+        if(node){
+            this.toArrInorder(node.left, vals);
+            vals.push(node.data);
+            this.toArrInorder(node.right, vals);
+        }
+        return vals;
+    }
+
+
+    toArrPostorder(node = this.root, vals = []) {
+        if(node){
+            this.toArrPostorder(node.left, vals);
+            this.toArrPostorder(node.right, vals);
+            vals.push(node.data);
+        }
+        return vals;
+    }
+
+
     insert(newVal) {
         let insertNode = new BSTNode(newVal);
         let current = this.root;
-        
+
         if(this.isEmpty() || current.data === newVal){
             return insertNode;
         }
-        
+
         while(current){
             if(current.data < newVal){
                 if(current.right){
@@ -48,26 +78,22 @@ class BinarySearchTree {
 
 
     insertRecursive(newVal, curr = this.root) {
-        const node = new BSTNode(newVal);
-
-        if(this.isEmpty()){
-            this.root = node;
+        if (this.isEmpty()) {
+            this.root = new BSTNode(newVal);
             return this;
         }
-        if(newVal < current.data){
-            if(current.left === null){
-                current.left = node;
+        if (newVal > curr.data) {
+            if (curr.right === null) {
+                curr.right = new BSTNode(newVal);
                 return this;
             }
-            return this.insertRecursive(newVal, current.left);
+            return this.insertRecursive(newVal, curr.right);
         }
-        if(newVal > current.data){
-            if(current.right === null){
-                current.right = node;
-                return this;
-            }
-            return this.insertRecursive(newVal, current.right);
+        if (curr.left === null) {
+            curr.left = new BSTNode(newVal);
+            return this;
         }
+        return this.insertRecursive(newVal, curr.left);
     }
 
 
@@ -191,7 +217,7 @@ twoLevelTree.root = new BSTNode(10);
 twoLevelTree.root.left = new BSTNode(5);
 twoLevelTree.root.right = new BSTNode(15);
 twoLevelTree.insert(4);
-console.log(twoLevelTree.print());
+console.log(twoLevelTree.toArrInorder());
 
 /* threeLevelTree 
         root
@@ -201,6 +227,7 @@ console.log(twoLevelTree.print());
 / \    / \
 2   6  13  
 */
+
 const threeLevelTree = new BinarySearchTree();
 threeLevelTree.root = new BSTNode(10);
 threeLevelTree.root.left = new BSTNode(5);
@@ -208,6 +235,7 @@ threeLevelTree.root.left.left = new BSTNode(2);
 threeLevelTree.root.left.right = new BSTNode(6);
 threeLevelTree.root.right = new BSTNode(15);
 threeLevelTree.root.right.left = new BSTNode(13);
+console.log(threeLevelTree.toArrPostorder());
 
 /* fullTree
                     root
@@ -220,6 +248,7 @@ threeLevelTree.root.right.left = new BSTNode(13);
     4    12  18  24  31  44 66  90
 */
 /***************** Uncomment after insert method is created. ****************/
+
 const fullTree = new BinarySearchTree();
 // fullTree.insert(25).insert(15)
     
