@@ -27,8 +27,13 @@ public class Dish
     [Display(Name = "Description")]
     public string Description {get; set;}
 
-    [Required]
-    public int UserId {get; set;}
+    public DateTime CreatedAt {get; set;} = DateTime.Now;
+    public DateTime UpdatedAt {get; set;} = DateTime.Now;
 
-    
+    [Required(ErrorMessage = "is requried")]
+    [Display(Name = "Chef")]
+    public int ChefId {get; set;}
+
+    public Chef? Chef {get; set;}
+
 }

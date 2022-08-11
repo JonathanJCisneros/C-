@@ -20,7 +20,15 @@ public class Chef
     [Required(ErrorMessage = "is required")]
     [DataType(DataType.Date)]
     [Display(Name = "Date of Birth")]
-    public DateOnly DOB {get; set;}
+    public DateTime DOB {get; set;}
 
-    
+    public DateTime CreatedAt {get; set;} = DateTime.Now;
+    public DateTime UpdatedAt {get; set;} = DateTime.Now;
+
+    public List<Dish> CreatedDishes {get; set;} = new List<Dish>(); 
+
+    public string FullName()
+    {
+        return $"{FirstName} {LastName}";
+    }
 }

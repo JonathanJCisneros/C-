@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using EntityFrameworkDemo.Models;
 namespace EntityFrameworkDemo.Controllers;
