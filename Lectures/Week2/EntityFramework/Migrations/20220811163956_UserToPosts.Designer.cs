@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntityFramework.Migrations
 {
     [DbContext(typeof(EFLectureContext))]
-    [Migration("20220810162140_AddUsers")]
-    partial class AddUsers
+    [Migration("20220811163956_UserToPosts")]
+    partial class UserToPosts
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace EntityFramework.Migrations
                 .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("EntityFramework.Models.Post", b =>
+            modelBuilder.Entity("EntityFrameworkDemo.Models.Post", b =>
                 {
                     b.Property<int>("PostId")
                         .ValueGeneratedOnAdd()
@@ -45,12 +45,17 @@ namespace EntityFramework.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("PostId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("EntityFramework.Models.User", b =>
+            modelBuilder.Entity("EntityFrameworkDemo.Models.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -81,6 +86,22 @@ namespace EntityFramework.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("EntityFrameworkDemo.Models.Post", b =>
+                {
+                    b.HasOne("EntityFrameworkDemo.Models.User", "Author")
+                        .WithMany("CreatedPosts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("EntityFrameworkDemo.Models.User", b =>
+                {
+                    b.Navigation("CreatedPosts");
                 });
 #pragma warning restore 612, 618
         }

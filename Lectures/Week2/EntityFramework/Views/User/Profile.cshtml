@@ -1,0 +1,22 @@
+@model User
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Profile for: @Model.FullName()</h1>
+
+        <h3>Posts:</h3>
+        <ul>
+            @foreach(Post p in Model.CreatedPosts)
+            {
+                <li>@p.Topic</li>
+            }
+        </ul>
+    </body>
+</html>

@@ -8,12 +8,16 @@
         <title>View Post</title>
     </head>
     <body>
+        <h1>Written By: @Model.Author.FullName()</h1>
         <h1>@Model.Topic</h1>
         <h3>@Model.Body</h3>
         <img src="/@Model.ImgUrl" alt="Something">
-        <form asp-controller="Post" asp-action="Delete" asp-route-deletedPostId="@Model.PostId" method="POST">
-            <button>Delete</button>
-        </form>
-        <a href="/posts/@Model.PostId">Edit</a>
+        @if(@Model.UserId == Context.Session.GetInt32("userId"))
+        {
+            <form asp-controller="Post" asp-action="Delete" asp-route-deletedPostId="@Model.PostId" method="POST">
+                <button>Delete</button>
+            </form>
+            <a href="/posts/@Model.PostId">Edit</a>
+        }
     </body>
 </html>

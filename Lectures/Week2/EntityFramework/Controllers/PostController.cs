@@ -4,7 +4,8 @@ using EntityFrameworkDemo.Models;
 namespace EntityFrameworkDemo.Controllers;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
-    
+using Microsoft.EntityFrameworkCore;
+
 public class PostController : Controller
 {
     private EFLectureContext _context;
@@ -38,7 +39,9 @@ public class PostController : Controller
         {
             return RedirectToAction("Index", "User");
         }
-        List<Post> AllPosts = _context.Posts.ToList();
+        List<Post> AllPosts = _context.Posts
+        .Include(post => post.Author)
+        .ToList();
 
         return View("All", AllPosts);
     }
@@ -64,6 +67,10 @@ public class PostController : Controller
         {
             return New();
         }
+        if(uid != null)
+        {
+            newPost.UserId = (int)uid;
+        }
         _context.Posts.Add(newPost);
         _context.SaveChanges();
         return RedirectToAction("All");
@@ -76,8 +83,10 @@ public class PostController : Controller
         {
             return RedirectToAction("Index", "User");
         }
-        Post? thisPost = _context.Posts.FirstOrDefault(post => post.PostId == postId);
-        if(thisPost == null)
+        Post? thisPost = _context.Posts
+        .Include(u => u.Author)
+        .FirstOrDefault(post => post.PostId == postId);
+        if(thisPost == null || thisPost.UserId != uid)
         {
             return RedirectToAction("All");
         }

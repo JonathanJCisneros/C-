@@ -11,12 +11,21 @@
 <body>
     <h3>Welcome @Context.Session.GetString("name"), ID: @Context.Session.GetInt32("UUID")</h3>
     <h1>View our posts</h1>
+
+    @{
+        Post newPost = new Post();
+        newPost.Topic = "This is a topic from cshtml";
+    }
+
+    <partial name="_New" model="@newPost"></partial>
+
     @foreach (Post item in Model)
         {
             <div>
                 <h3>@item.Topic</h3>
                 <h3>@item.Body</h3>
                 <p>@item.CreatedAt</p>
+                <p>@item.Author.FullName()</p>
                 @if(item.ImgUrl != null && item.ImgUrl != "")
                 {
                 <img src="@item.ImgUrl" alt="No Image Here lol">

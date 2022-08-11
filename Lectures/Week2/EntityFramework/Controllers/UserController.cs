@@ -5,6 +5,7 @@ namespace EntityFrameworkDemo.Controllers;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 public class UserController : Controller
 {
@@ -102,5 +103,22 @@ public class UserController : Controller
     {
         HttpContext.Session.Clear();
         return RedirectToAction("Index");
+    }
+
+    [HttpGet("/login")]
+    public IActionResult Profile()
+    {
+        if(!loggedIn)
+        {
+            return RedirectToAction("Index");
+        }
+        User? oneUser = db.Users
+            .Include(user => user.CreatedPosts)
+            .FirstOrDefault(user => user.UserId == uid);
+        if(oneUser != null)
+        {
+            return View("Profile", oneUser);
+        }
+        return RedirectToAction("Logout");
     }
 }
