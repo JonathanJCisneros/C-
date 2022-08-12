@@ -142,7 +142,7 @@ public class UserController : Controller
         newTransaction.UserId = (int)uid;
         db.Transactions.Add(newTransaction);
         db.SaveChanges();
-        return Accounts();
+        return RedirectToAction("Accounts");
     }
 
     [HttpPost("/logout")]
