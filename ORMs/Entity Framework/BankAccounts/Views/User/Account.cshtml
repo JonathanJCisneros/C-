@@ -12,8 +12,6 @@
         <h1>Welcome, @Context.Session.GetString("name")</h1>
         <h3>Current Balance: @ViewBag.Sum</h3>
 
-        <a asp-controller="User" asp-action="Logout">Logout</a>
-
         <form asp-controller="User" asp-action="Transaction" method="POST">
             <div>
                 <label asp-for="Amount"></label>
