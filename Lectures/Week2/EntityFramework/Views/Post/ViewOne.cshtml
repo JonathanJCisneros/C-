@@ -12,6 +12,11 @@
         <h1>@Model.Topic</h1>
         <h3>@Model.Body</h3>
         <img src="/@Model.ImgUrl" alt="Something">
+        <h3>Users who liked this post</h3>
+        @foreach (UserPostLike like in Model.PostLikes)
+        {
+            <p>@like.User.FullName()</p>
+        }
         @if(@Model.UserId == Context.Session.GetInt32("userId"))
         {
             <form asp-controller="Post" asp-action="Delete" asp-route-deletedPostId="@Model.PostId" method="POST">

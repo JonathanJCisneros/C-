@@ -31,6 +31,26 @@
                     <img src="@item.ImgUrl" alt="No Image Here lol">
                     }
                     <a asp-controller="Post" asp-action="GetOne" asp-route-postId="@item.PostId">View Details</a>
+
+                @{
+                    bool alreadyLiked = item.PostLikes.Any(likes => likes.UserId == Context.Session.GetInt32("UUID"));
+                }
+                <div>
+                    <form asp-controller="Post" asp-action="Like" asp-route-postId="@item.PostId" method="POST">
+
+                        <button type="submit">
+                            @if(alreadyLiked)
+                            {
+                                <span>Unlike</span>
+                            }
+                            else
+                            {
+                                <span>Like</span>
+                            }
+                        </button>
+                    </form>
+                    <span>Likes: @item.PostLikes.Count</span>
+                </div>
                 </div>
             }
         <a href="/post/new">New Post</a>

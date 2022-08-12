@@ -26,4 +26,6 @@ public class Post
 
     public int UserId {get; set;}
     public User? Author {get; set;} 
+
+    public List<UserPostLike> PostLikes {get; set;} = new List<UserPostLike>();
 }

@@ -40,8 +40,9 @@ public class PostController : Controller
             return RedirectToAction("Index", "User");
         }
         List<Post> AllPosts = _context.Posts
-        .Include(post => post.Author)
-        .ToList();
+            .Include(post => post.Author)
+            .Include(post => post.PostLikes)
+            .ToList();
 
         return View("All", AllPosts);
     }
@@ -84,8 +85,10 @@ public class PostController : Controller
             return RedirectToAction("Index", "User");
         }
         Post? thisPost = _context.Posts
-        .Include(u => u.Author)
-        .FirstOrDefault(post => post.PostId == postId);
+            .Include(u => u.Author)
+            .Include(post => post.PostLikes)
+            .ThenInclude(u => u.User)
+            .FirstOrDefault(post => post.PostId == postId);
         if(thisPost == null || thisPost.UserId != uid)
         {
             return RedirectToAction("All");
@@ -151,5 +154,34 @@ public class PostController : Controller
             return EditPost(editedPost.PostId);
         }
         
+    }
+
+    [HttpPost("/post/{postId}/like")]
+    public IActionResult Like(int postId)
+    {
+        if(!loggedIn || uid == null)
+        {
+            return RedirectToAction("Index", "User");
+        }
+
+        UserPostLike? existingLike =_context.UserPostLikes.FirstOrDefault(like => like.PostId == postId && like.UserId == uid);
+
+        if(existingLike == null)
+        {
+            UserPostLike newLike = new UserPostLike()
+            {
+                PostId = postId,
+                UserId = (int)uid
+            };
+            _context.UserPostLikes.Add(newLike);
+        }
+        else
+        {
+            _context.Remove(existingLike);
+        }
+
+
+        _context.SaveChanges();
+        return RedirectToAction("All");
     }
 }
