@@ -1,0 +1,41 @@
+@model Transaction
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Account</title>
+    </head>
+    <body>
+        <h1>Welcome, @Context.Session.GetString("name")</h1>
+        <h3>Current Balance: @ViewBag.Sum</h3>
+
+        <a asp-controller="User" asp-action="Logout">Logout</a>
+
+        <form asp-controller="User" asp-action="Transaction" method="POST">
+            <div>
+                <label asp-for="Amount"></label>
+                <span asp-validation-for="Amount"></span>
+                <input asp-for="Amount">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <table>
+            <thead>
+                <th>Amount</th>
+                <th>Date</th>
+            </thead>
+            <tbody>
+                @foreach (Transaction item in ViewBag.Transactions)
+                {
+                    <tr>
+                        <td>@item.Amount</td>
+                        <td>@item.CreatedAt.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>
+</html>
