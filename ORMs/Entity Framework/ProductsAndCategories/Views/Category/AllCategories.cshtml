@@ -1,0 +1,38 @@
+@model Category
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div style="text-align: center;">
+                <h1><a asp-controller="Product" asp-action="Products">Products</a> | Categories</h1>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+                <div style="flex: 1;">
+                    <h1>New Category</h1>
+                    <form asp-controller="Category" asp-action="NewCategory" method="POST">
+                        <div>
+                            <label asp-for="Name"></label>
+                            <span asp-validation-for="Name"></span>
+                            <input asp-for="Name">
+                        </div>
+                        <button type="submit">Create</button>
+                    </form>
+                </div>
+                <div style="flex: 1;">
+                    <div>
+                        <h1>Existing Categories</h1>
+                        @foreach (Category c in ViewBag.Categories)
+                        {
+                            <h3><a asp-controller="Category" asp-action="ProdForCat" asp-route-categoryId="@c.CategoryId">@c.Name</a></h3>
+                        }
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

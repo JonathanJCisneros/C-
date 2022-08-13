@@ -1,0 +1,48 @@
+@model Product
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div style="text-align: center;">
+            <h1>Products | <a asp-controller="Category" asp-action="Categories">Categories</a></h1>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+            <div style="flex: 1;">
+                <h1>New Product</h1>
+                <form asp-controller="Product" asp-action="NewProduct" method="POST">
+                    <div>
+                        <label asp-for="Name"></label>
+                        <span asp-validation-for="Name"></span>
+                        <input asp-for="Name">
+                    </div>
+                    <div>
+                        <label asp-for="Description"></label>
+                        <span asp-validation-for="Description"></span>
+                        <textarea asp-for="Description" cols="40" rows="5"></textarea>
+                    </div>
+                    <div>
+                        <label asp-for="Price"></label>
+                        <span asp-validation-for="Price"></span>
+                        <input asp-for="Price" />
+                    </div>
+                    <button type="submit">Create</button>
+                </form>
+            </div>
+            <div style="flex: 1;">
+                <div>
+                    <h1>Existing Products</h1>
+                    @foreach (Product p in ViewBag.Products)
+                    {
+                        <h3><a asp-controller="Product" asp-action="CatForProd" asp-route-productId="@p.ProductId">@p.Name</a></h3>
+                    }
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
