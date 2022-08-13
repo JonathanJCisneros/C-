@@ -1,0 +1,31 @@
+@model Wedding
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="display: flex; align-items: center; justify-content: space-evenly">
+        <h1>@Model.WedderOne and @Model.WedderTwo's Wedding</h1>
+        <div style="display: flex; justify-content: space-evenly; width: 150px;">
+            <a asp-controller="Wedding" asp-action="Dashboard">Dashboard</a>
+            <a asp-controller="Attendee" asp-action="Logout">Logout</a>
+        </div>
+    </div>
+
+    <h2>Date: @Model.Date</h2>
+    <div style="display: flex; align-items: center; justify-content: space-evenly">
+        <div>
+            <h2>Guests:</h2>
+
+            @foreach (GuestList a in Model.AttendanceList)
+            {
+                <h3>@a.Attendee.FirstName @a.Attendee.LastName</h3>
+            }
+        </div>
+    </div>
+</body>
+</html>

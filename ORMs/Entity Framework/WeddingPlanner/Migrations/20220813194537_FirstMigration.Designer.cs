@@ -11,7 +11,7 @@ using WeddingPlanner.Models;
 namespace WeddingPlanner.Migrations
 {
     [DbContext(typeof(WeddingPlannerContext))]
-    [Migration("20220813065912_FirstMigration")]
+    [Migration("20220813194537_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,6 +86,10 @@ namespace WeddingPlanner.Migrations
                     b.Property<int>("WeddingId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");

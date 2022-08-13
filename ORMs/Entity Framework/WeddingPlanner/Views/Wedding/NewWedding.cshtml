@@ -1,0 +1,43 @@
+@model Wedding
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div style="display: flex; align-items: center; justify-content: space-evenly">
+            <h1>Plan Your Wedding</h1>
+            <div style="display: flex; justify-content: space-evenly; width: 150px;">
+                <a asp-controller="Wedding" asp-action="Dashboard">Dashboard</a>
+                <a asp-controller="Attendee" asp-action="Logout">Logout</a>
+            </div>
+        </div>
+        <form asp-controller="Wedding" asp-action="Create" method="POST">
+            <div>
+                <label asp-for="WedderOne" class="form-label"></label>
+                <span asp-validation-for="WedderOne" style="color: red; font-weight: bold;"></span>
+                <input asp-for="WedderOne" class="form-control">
+            </div>
+            <div>
+                <label asp-for="WedderTwo" class="form-label"></label>
+                <span asp-validation-for="WedderTwo" style="color: red; font-weight: bold;"></span>
+                <input asp-for="WedderTwo" class="form-control">
+            </div>
+            <div>
+                <label asp-for="Date" class="form-label"></label>
+                <span asp-validation-for="Date" style="color: red; font-weight: bold;"></span>
+                <input type="Date" asp-for="Date" class="form-control">
+            </div>
+            <div>
+                <label asp-for="Address" class="form-label"></label>
+                <span asp-validation-for="Address" style="color: red; font-weight: bold;"></span>
+                <input asp-for="Address" class="form-control">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-outline-success">Plan Wedding</button>
+        </form>
+    </body>
+</html>

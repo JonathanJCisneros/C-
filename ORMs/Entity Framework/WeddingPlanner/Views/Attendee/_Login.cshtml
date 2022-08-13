@@ -12,16 +12,17 @@
         <form asp-controller="Attendee" asp-action="Login" method="POST">
             <h1>Login</h1>
             <div>
-                <label asp-for="LoginEmail"></label>
-                <span asp-validation-for="LoginEmail"></span>
-                <input asp-for="LoginEmail">
+                <label asp-for="LoginEmail" class="form-label"></label>
+                <span asp-validation-for="LoginEmail" style="color: red; font-weight: bold;"></span>
+                <input asp-for="LoginEmail" class="form-control">
             </div>
             <div>
-                <label asp-for="LoginPassword"></label>
-                <span asp-validation-for="LoginPassword"></span>
-                <input asp-for="LoginPassword">
+                <label asp-for="LoginPassword" class="form-label"></label>
+                <span asp-validation-for="LoginPassword" style="color: red; font-weight: bold;"></span>
+                <input asp-for="LoginPassword" class="form-control">
             </div>
-            <button type="submit">Log In</button>
+            <br>
+            <button type="submit" class="btn btn-outline-primary">Log In</button>
         </form>
     </body>
 </html>

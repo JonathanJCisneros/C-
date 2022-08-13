@@ -33,6 +33,10 @@ public class WeddingController : Controller
     [HttpGet("/dashboard")]
     public IActionResult Dashboard()
     {
+        if(!loggedIn)
+        {
+            return RedirectToAction("RegisterOrLogin", "Attendee");
+        }
         List<Wedding> AllWeddings = db.Weddings
             .Include(a => a.AttendanceList)
             .ToList();
@@ -42,6 +46,10 @@ public class WeddingController : Controller
     [HttpGet("/{weddingId}")]
     public IActionResult WeddingDetails(int weddingId)
     {
+        if(!loggedIn)
+        {
+            return RedirectToAction("RegisterOrLogin", "Attendee");
+        }
         Wedding? wedding = db.Weddings
             .Include(g => g.AttendanceList)
             .ThenInclude(a => a.Attendee)
@@ -57,6 +65,10 @@ public class WeddingController : Controller
     [HttpGet("/delete/{weddingId}")]
     public IActionResult DeleteOne(int weddingId)
     {
+        if(!loggedIn)
+        {
+            return RedirectToAction("RegisterOrLogin", "Attendee");
+        }
         Wedding? wedding = db.Weddings.FirstOrDefault(w => w.WeddingId == weddingId);
         if(wedding == null)
         {
@@ -71,6 +83,70 @@ public class WeddingController : Controller
     [HttpGet("/wedding/{weddingId}/attend")]
     public IActionResult Attend(int weddingId)
     {
-        GuestList? currentGuest = db.GuestList.FirstOrDefault(g => g.)
+        if(!loggedIn)
+        {
+            return RedirectToAction("RegisterOrLogin", "Attendee");
+        }
+        GuestList? currentGuest = db.GuestList.FirstOrDefault(g => g.WeddingId == weddingId && g.AttendeeId == uid);
+        if(currentGuest == null)
+        {
+            GuestList newGuest = new GuestList()
+            {
+                WeddingId = weddingId,
+                AttendeeId = (int)uid
+            };
+            db.GuestList.Add(newGuest);
+        }
+        else
+        {
+            db.Remove(currentGuest);
+        }
+        db.SaveChanges();
+        return RedirectToAction("Dashboard");
+    }
+
+    [HttpGet("/wedding/new")]
+    public IActionResult Plan()
+    {
+        if(!loggedIn)
+        {
+            return RedirectToAction("RegisterOrLogin", "Attendee");
+        }
+        return View("NewWedding");
+    }
+
+    [HttpPost("/wedding/create")]
+    public IActionResult Create(Wedding wedding)
+    {
+        if(!loggedIn)
+        {
+            return RedirectToAction("RegisterOrLogin", "Attendee");
+        }
+        if(ModelState.IsValid == false)
+        {
+            return Plan();
+        }
+        wedding.PlannerId = (int)uid;
+        db.Weddings.Add(wedding);
+        db.SaveChanges();
+        return RedirectToAction("Dashboard");
+    }
+
+    [HttpGet("/wedding/{weddingId}")]
+    public IActionResult OneWedding(int weddingId)
+    {
+        if(!loggedIn)
+        {
+            return RedirectToAction("RegisterOrLogin", "Attendee");
+        }
+        Wedding? wedding = db.Weddings
+            .Include(g => g.AttendanceList)
+            .ThenInclude(g => g.Attendee)
+            .FirstOrDefault(w => w.WeddingId == weddingId);
+        if(wedding == null)
+        {
+            return RedirectToAction("Dashboard");
+        }
+        return View("OneWedding", wedding);
     }
 }

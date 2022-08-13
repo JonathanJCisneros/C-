@@ -33,6 +33,10 @@ public class AttendeeController : Controller
     [HttpGet("/")]
     public IActionResult RegisterOrLogin()
     {
+        if(loggedIn)
+        {
+            return RedirectToAction("Dashboard", "Wedding");
+        }
         return View("RegisterOrLogin");
     }
 
@@ -93,7 +97,7 @@ public class AttendeeController : Controller
         return RedirectToAction("Dashboard", "Wedding");
     }
 
-    [HttpPost("/logout")]
+    [HttpGet("/logout")]
     public IActionResult Logout()
     {
         HttpContext.Session.Clear();

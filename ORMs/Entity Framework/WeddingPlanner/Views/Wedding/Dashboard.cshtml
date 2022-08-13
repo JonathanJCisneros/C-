@@ -11,9 +11,7 @@
     <body>
         <div style="display: flex; align-items: center; justify-content: space-evenly;">
             <h1>Welcome to the Wedding Planner</h1>
-            <form asp-controller="Attendee" asp-action="Logout" method="POST">
-                <button type="submit">Logout</button>
-            </form>
+            <a asp-controller="Attendee" asp-action="Logout">Logout</a>
         </div>
 
         <table class="table table-hover">
@@ -29,7 +27,7 @@
                 @foreach (Wedding w in Model)
                 {
                     <tr>
-                        <td><a asp-controller="Wedding" asp-action="WeddingDetails" asp-route-weddingId="@w.WeddingId">@w.WedderOne & @w.WedderTwo</a></td>
+                        <td><a asp-controller="Wedding" asp-action="OneWedding" asp-route-weddingId="@w.WeddingId">@w.WedderOne & @w.WedderTwo</a></td>
                         <td>@w.Date.Date</td>
                         <td>@w.AttendanceList.Count</td>
                         <td>
@@ -57,6 +55,6 @@
                 }
             </tbody>
         </table>
-        
+        <a asp-controller="Wedding" asp-action="Plan" class="btn btn-outline-primary">New Wedding</a>
     </body>
 </html>
