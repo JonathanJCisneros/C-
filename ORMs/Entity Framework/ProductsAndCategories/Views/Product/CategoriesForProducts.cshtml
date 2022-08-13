@@ -14,9 +14,9 @@
         <div style="display: flex; align-items: center">
             <div style="flex: 1;">
                 <h3>Categories</h3>
-                @foreach (Category c in ViewBag.OneProduct.CategoryList)
+                @foreach (Association c in ViewBag.Product.ProductsWithCategories)
                 {
-                    <p>- @c.Name</p>
+                    <p>- @c.Category.Name</p>
                 }
             </div>
             <div style="flex: 1;">
@@ -26,7 +26,8 @@
                         <label asp-for="CategoryId"></label>
                         <span asp-validation-for="CategoryId"></span>
                         <select asp-for="CategoryId">
-                        @foreach (Category c in ViewBag.CategoryList)
+                            <option >Select</option>
+                        @foreach (Category c in ViewBag.NotYetAssoc)
                         {
                             <option value="@c.CategoryId">@c.Name</option>
                         }

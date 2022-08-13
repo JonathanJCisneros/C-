@@ -98,13 +98,13 @@ namespace ProductsAndCategories.Migrations
             modelBuilder.Entity("ProductsAndCategories.Models.Association", b =>
                 {
                     b.HasOne("ProductsAndCategories.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("CategoriesWithProducts")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProductsAndCategories.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductsWithCategories")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -112,6 +112,16 @@ namespace ProductsAndCategories.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("ProductsAndCategories.Models.Category", b =>
+                {
+                    b.Navigation("CategoriesWithProducts");
+                });
+
+            modelBuilder.Entity("ProductsAndCategories.Models.Product", b =>
+                {
+                    b.Navigation("ProductsWithCategories");
                 });
 #pragma warning restore 612, 618
         }

@@ -38,19 +38,30 @@ public class CategoryController : Controller
     [HttpGet("/categories/{categoryId}")]
     public IActionResult ProdForCat(int categoryId)
     {
-        Category? OneCategory = db.Categories.FirstOrDefault(c => c.CategoryId == categoryId);
-        ViewBag.Categories = OneCategory;
+        Category? OneCategory = db.Categories
+            .Include(c => c.CategoriesWithProducts)
+            .FirstOrDefault(c => c.CategoryId == categoryId);
+        ViewBag.Category = OneCategory;
 
         List<Product> AllProducts = db.Products.ToList(); 
-        return View("CategoriesForProducts", AllProducts);
+
+        List<Product> SomeProducts = new List<Product>();
+
+        foreach(Association c in OneCategory.CategoriesWithProducts)
+        {
+            SomeProducts.Add(c.Product);
+        }
+        List<Product> NotYetAssoc = AllProducts.Except(SomeProducts).ToList();
+        ViewBag.NotYetAssoc = NotYetAssoc;
+        return View("ProductsForCategories");
     }
 
     [HttpPost("/category/addproduct/{categoryId}")]
-    public IActionResult AddCategory(int categoryId, Association newProduct)
+    public IActionResult AddProduct(int categoryId, Association newProduct)
     {
         if(ModelState.IsValid == false)
         {
-            return RedirectToAction("ProdForCat", new {categoryId = categoryId});
+            return ProdForCat(categoryId);
         }
         newProduct.CategoryId = categoryId;
         db.Associations.Add(newProduct);

@@ -1,0 +1,41 @@
+@model Association
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>@ViewBag.Category.Name</h1>
+    
+        <div style="display: flex; align-items: center">
+            <div style="flex: 1;">
+                <h3>Products</h3>
+                @foreach (Association c in ViewBag.Category.CategoriesWithProducts)
+                {
+                    <p>- @c.Product.Name</p>
+                }
+            </div>
+            <div style="flex: 1;">
+                <h3>Add Product</h3>
+                <form asp-controller="Category" asp-action="AddProduct" asp-route-productId="@ViewBag.Category.CategoryId" method="POST">
+                    <div>
+                        <label asp-for="ProductId"></label>
+                        <span asp-validation-for="ProductId"></span>
+                        <select asp-for="ProductId">
+                            <option>Select</option>
+                        @foreach (Product p in ViewBag.NotYetAssoc)
+                        {
+                            <option value="@p.ProductId">@p.Name</option>
+                        }
+                        </select>
+                    </div>
+                    <button type="submit">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

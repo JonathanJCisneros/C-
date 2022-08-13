@@ -22,5 +22,5 @@ public class Product
     public DateTime CreatedAt {get; set;} = DateTime.Now;
     public DateTime UpdatedAt {get; set;} = DateTime.Now;
 
-    public List<Category> CategoryList {get; set;} = new List<Category>();
+    public List<Association> ProductsWithCategories {get; set;} = new List<Association>();
 }

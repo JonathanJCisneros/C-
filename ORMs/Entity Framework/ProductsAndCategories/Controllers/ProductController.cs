@@ -40,15 +40,20 @@ public class ProductController : Controller
     public IActionResult CatForProd(int productId)
     {
         Product? OneProduct = db.Products
-            .Include(c => c.CategoryList)
+            .Include(p => p.ProductsWithCategories)
             .FirstOrDefault(p => p.ProductId == productId);
         ViewBag.Product = OneProduct;
-        if(OneProduct == null)
+
+        List<Category> AllCategories = db.Categories.ToList();
+
+        List<Category> SomeCategories = new List<Category>();
+
+        foreach(Association c in OneProduct.ProductsWithCategories)
         {
-            return RedirectToAction("Products");
+            SomeCategories.Add(c.Category);
         }
-        List<Category> AllCategories = db.Categories.ToList(); 
-        ViewBag.CategoryList = AllCategories;
+        List<Category> NotYetAssoc = AllCategories.Except(SomeCategories).ToList();
+        ViewBag.NotYetAssoc = NotYetAssoc;
         return View("CategoriesForProducts");
     }
 
