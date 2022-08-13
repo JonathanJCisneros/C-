@@ -91,6 +91,9 @@ namespace WeddingPlanner.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("PlannerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -104,7 +107,7 @@ namespace WeddingPlanner.Migrations
 
                     b.HasKey("WeddingId");
 
-                    b.ToTable("Wedding");
+                    b.ToTable("Weddings");
                 });
 
             modelBuilder.Entity("WeddingPlanner.Models.GuestList", b =>
@@ -116,7 +119,7 @@ namespace WeddingPlanner.Migrations
                         .IsRequired();
 
                     b.HasOne("WeddingPlanner.Models.Wedding", "Wedding")
-                        .WithMany()
+                        .WithMany("AttendanceList")
                         .HasForeignKey("WeddingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -129,6 +132,11 @@ namespace WeddingPlanner.Migrations
             modelBuilder.Entity("WeddingPlanner.Models.Attendee", b =>
                 {
                     b.Navigation("WeddingsAttending");
+                });
+
+            modelBuilder.Entity("WeddingPlanner.Models.Wedding", b =>
+                {
+                    b.Navigation("AttendanceList");
                 });
 #pragma warning restore 612, 618
         }

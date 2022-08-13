@@ -8,4 +8,6 @@ public class WeddingPlannerContext : DbContext
     public WeddingPlannerContext(DbContextOptions options) : base(options) { }
 
     public DbSet<Attendee> Attendees { get; set; } 
+    public DbSet<Wedding> Weddings {get; set;}
+    public DbSet<GuestList> GuestList {get; set;}
 }

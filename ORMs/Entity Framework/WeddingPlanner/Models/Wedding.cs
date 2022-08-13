@@ -27,7 +27,10 @@ public class Wedding
     public DateTime CreatedAt {get; set;} = DateTime.Now;
     public DateTime UpdatedAt {get; set;} = DateTime.Now;
 
-    List<GuestList> AttendanceList {get; set;} = new List<GuestList>();
+    [Required]
+    public int PlannerId {get; set;} 
+
+    public List<GuestList> AttendanceList {get; set;} = new List<GuestList>();
 }
 
 [NotMapped]

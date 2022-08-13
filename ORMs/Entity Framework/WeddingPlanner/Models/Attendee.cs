@@ -30,6 +30,7 @@ public class Attendee
     public string Password {get; set;}
 
     [NotMapped]
+    [Required(ErrorMessage = "is required")]
     [DataType(DataType.Password)]
     [Compare("Password", ErrorMessage = "doesn't match Password")]
     [Display(Name = "PW Confirm")]

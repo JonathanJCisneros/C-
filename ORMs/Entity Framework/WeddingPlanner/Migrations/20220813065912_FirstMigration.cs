@@ -37,7 +37,7 @@ namespace WeddingPlanner.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Wedding",
+                name: "Weddings",
                 columns: table => new
                 {
                     WeddingId = table.Column<int>(type: "int", nullable: false)
@@ -48,11 +48,12 @@ namespace WeddingPlanner.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    PlannerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Wedding", x => x.WeddingId);
+                    table.PrimaryKey("PK_Weddings", x => x.WeddingId);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -77,9 +78,9 @@ namespace WeddingPlanner.Migrations
                         principalColumn: "AttendeeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_GuestList_Wedding_WeddingId",
+                        name: "FK_GuestList_Weddings_WeddingId",
                         column: x => x.WeddingId,
-                        principalTable: "Wedding",
+                        principalTable: "Weddings",
                         principalColumn: "WeddingId",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -105,7 +106,7 @@ namespace WeddingPlanner.Migrations
                 name: "Attendees");
 
             migrationBuilder.DropTable(
-                name: "Wedding");
+                name: "Weddings");
         }
     }
 }
