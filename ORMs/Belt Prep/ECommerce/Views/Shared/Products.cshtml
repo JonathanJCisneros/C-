@@ -1,0 +1,67 @@
+@model Product
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div style="margin-left: 70px; margin-top: 50px;">
+            <h1><a asp-controller="ECommerce" asp-action="Dashboard">Dashboard</a> | Products | <a asp-controller="ECommerce" asp-action="Orders">Orders</a> | <a asp-controller="ECommerce" asp-action="Customers">Customers</a> | <a asp-controller="ECommerce" asp-action="Settings">Settings</a></h1>
+        </div>
+        <div style="display: flex;">
+            <div>
+                <div>
+                    <input type="text" name="search">
+                    <br>
+                    <button>Filter</button>
+                </div>
+                <div>
+                    <form asp-controller="ECommerce" asp-action="CreateProduct" method="POST">
+                        <div>
+                            <label asp-for="Name"></label>
+                            <span asp-validation-for="Name"></span>
+                            <input asp-for="Name">
+                        </div>
+                        <div>
+                            <label asp-for="Image"></label>
+                            <span asp-validation-for="Image"></span>
+                            <input asp-for="Image">
+                        </div>
+                        <div>
+                            <label asp-for="Description"></label>
+                            <span asp-validation-for="Description"></span>
+                            <textarea asp-for="Description" rows="6" cols="25"></textarea>
+                        </div>
+                        <div>
+                            <label asp-for="Quantity"></label>
+                            <span asp-validation-for="Quantity"></span>
+                            <select asp-for="Quantity">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                            </select>
+                        </div>
+                        <button type="submit">Create</button>
+                    </form>
+                </div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                @foreach (Product item in ViewBag.Products)
+                {
+                    <div style="border: 2px solid black; height: 150px; width: 100px;">
+                        <img src="" alt="Product Image" height="75px" width="75px">
+                        <h4>@item.Name</h4>
+                        <p>(@item.Quantity left)</p>
+                    </div>
+                }
+        </div>
+    </body>
+</html>
