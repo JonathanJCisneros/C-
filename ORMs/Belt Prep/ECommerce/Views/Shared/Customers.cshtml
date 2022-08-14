@@ -6,7 +6,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Customers</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/WeddingPlanner.styles.css" asp-append-version="true" />
     </head>
     <body>
         <div style="margin-left: 70px; margin-top: 50px;">
@@ -28,12 +31,12 @@
             <button type="submit">Add</button>
         </form>
 
-        <table>
+        <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Customer Name</th>
-                    <th>Created Date</th>
-                    <th>Actions</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Created Date</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,8 +44,8 @@
                 {
                     <tr>
                         <td>@c.FullName()</td>
-                        <td>@c.CreatedAt</td>
-                        <td><a asp-controller="ECommerce" asp-action="DeleteOne">Delete</a></td>
+                        <td>@c.CreatedAt.ToString("MMMM d, yyyy")</td>
+                        <td><a asp-controller="ECommerce" asp-action="DeleteOne" class="btn btn-danger">Delete</a></td>
                     </tr>
                 }
             </tbody>

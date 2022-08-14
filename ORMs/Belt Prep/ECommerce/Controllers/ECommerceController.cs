@@ -53,6 +53,10 @@ public class ECommerceController : Controller
         {
             return Orders();
         }
+        Product? orderedProduct = db.Products.FirstOrDefault(p => p.ProductId == newOrder.ProductId);
+
+        orderedProduct.Quantity = orderedProduct.Quantity - newOrder.OrderQuantity;
+        db.Products.Update(orderedProduct);
         db.Orders.Add(newOrder);
         db.SaveChanges();
         return RedirectToAction("Orders");

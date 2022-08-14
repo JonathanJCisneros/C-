@@ -12,7 +12,6 @@ public class Product
     [Display(Name = "Name")]
     public string Name {get; set;}
 
-    [Required(ErrorMessage = "is required")]
     [Display(Name = "Image (url)")]
     public string Image {get; set;}
 

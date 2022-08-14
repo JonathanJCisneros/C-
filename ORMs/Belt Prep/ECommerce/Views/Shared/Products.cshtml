@@ -6,7 +6,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Products</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/WeddingPlanner.styles.css" asp-append-version="true" />
     </head>
     <body>
         <div style="margin-left: 70px; margin-top: 50px;">
@@ -20,7 +23,7 @@
                     <button>Filter</button>
                 </div>
                 <div>
-                    <form asp-controller="ECommerce" asp-action="CreateProduct" method="POST">
+                    <form asp-controller="ECommerce" asp-action="AddProduct" method="POST">
                         <div>
                             <label asp-for="Name"></label>
                             <span asp-validation-for="Name"></span>
@@ -56,10 +59,12 @@
             <div style="display: flex; flex-wrap: wrap;">
                 @foreach (Product item in ViewBag.Products)
                 {
-                    <div style="border: 2px solid black; height: 150px; width: 100px;">
-                        <img src="" alt="Product Image" height="75px" width="75px">
-                        <h4>@item.Name</h4>
-                        <p>(@item.Quantity left)</p>
+                    <div class="card" style="width: 18rem;">
+                        <img src="" alt="Product Image" class="card-img-top">
+                        <div  class="card-body">
+                            <h4>@item.Name</h4>
+                            <p>(@item.Quantity left)</p>
+                        </div>
                     </div>
                 }
         </div>
