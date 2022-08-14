@@ -1,0 +1,21 @@
+@model Message
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <form asp-controller="Message" asp-action="CreateMessage" method="POST">
+            <div>
+                <label asp-for="MessageString" class="form-label"></label>
+                <span asp-validation-for="MessageString" style="color: red; font-weight: bold;"></span>
+                <input asp-for="MessageString" class="form-control">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Post a Message</button>
+        </form>
+    </body>
+</html>

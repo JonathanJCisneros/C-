@@ -1,0 +1,41 @@
+@model Comment
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <partial name="_Message" ></partial>
+
+        @foreach (Message m in ViewBag.All)
+        {
+            <div>
+                <h3>@m.User.FirstName @m.User.LastName - @m.CreatedAt.ToString("MMMM d, yyyy")</h3>
+                @if(m.UserId == Context.Session.GetInt32("UserId"))
+                {
+                    <a asp-controller="Message" asp-action="Delete" asp-route-messageId="@m.MessageId">Delete</a>
+                }
+                <p style="margin-left: 40px;">@m.MessageString</p>
+                <div style="margin-left: 40px;">
+                    @foreach (Comment c in m.CommentList)
+                    {
+                        <h4>@c.User.FirstName @c.User.LastName - @m.CreatedAt.ToString("MMMM d, yyyy")</h4>
+                        <p style="margin-left: 40px;">@c.CommentString</p>
+                    }
+                    <form asp-controller="Message" asp-action="CreateComment" asp-route-messageId="@m.MessageId" method="POST">
+                        <div>
+                            <label asp-for="CommentString" class="form-label"></label>
+                            <span asp-validation-for="CommentString" style="color: red; font-weight: bold;"></span>
+                            <input asp-for="CommentString" class="form-control">
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-success">Post a Comment</button>
+                    </form>
+                </div>
+            </div>
+        }
+    </body>
+</html>
