@@ -41,19 +41,14 @@ public class ProductController : Controller
     {
         Product? OneProduct = db.Products
             .Include(p => p.ProductsWithCategories)
+            .ThenInclude(c => c.Category)
             .FirstOrDefault(p => p.ProductId == productId);
         ViewBag.Product = OneProduct;
 
-        List<Category> AllCategories = db.Categories.ToList();
-
-        List<Category> SomeCategories = new List<Category>();
-
-        foreach(Association c in OneProduct.ProductsWithCategories)
-        {
-            SomeCategories.Add(c.Category);
-        }
-        List<Category> NotYetAssoc = AllCategories.Except(SomeCategories).ToList();
-        ViewBag.NotYetAssoc = NotYetAssoc;
+        ViewBag.NotYetAssoc = db.Categories
+            .Include(p => p.CategoriesWithProducts)
+            .ThenInclude(p => p.Product)
+            .Where(c => !c.CategoriesWithProducts.Any(c => c.ProductId == productId));
         return View("CategoriesForProducts");
     }
 
