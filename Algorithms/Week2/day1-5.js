@@ -54,7 +54,13 @@ class BinarySearchTree {
       * @param {Node} node The current node during the traversal of this tree.
       * @returns {number} The total number of nodes.
       */
-    size(node = this.root) {}
+    size(node = this.root) {
+        if (!node) {
+            return 0;
+        }
+        return 1 + this.size(node.left) + this.size(node.right);
+    }
+    
 
     /**
       * Calculates the height of the tree which is based on how many nodes from
@@ -64,7 +70,12 @@ class BinarySearchTree {
       * @param {Node} node The current node during traversal of this tree.
       * @returns {number} The height of the tree.
       */
-    height(node = this.root) {}
+    height(node = this.root) {
+        if (!node) {
+            return 0;
+        }
+        return 1 + Math.max(this.height(node.left), this.height(node.right));
+    }
 
     /**
       * Determines if this tree is a full tree. A full tree is a tree where every
@@ -74,7 +85,18 @@ class BinarySearchTree {
       * @param {Node} node The current node during traversal of this tree.
       * @returns {boolean} Indicates if this tree is full.
       */
-    isFull(node = this.root) {}
+    isFull(node = this.root) {
+        if (!node) {
+            return false;
+        }
+        if (!node.left && !node.right) {
+            return true;
+        }
+        if (node.left && node.right) {
+            return this.isFull(node.left) && this.isFull(node.right);
+        }
+        return false;
+    }
 
 
     toArrPreorder(node = this.root, vals = []) {
