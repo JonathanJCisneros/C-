@@ -17,41 +17,13 @@ class MinHeap {
     this.heap = [null];
     }
 
-    /**
-     * Retrieves the top (minimum number) in the heap without removing it.
-     * - Time: O(1) constant.
-     * - Space: O(1) constant.
-     * @returns {?number} Null if empty.
-     */
+
     top() {
         return this.heap.length > 1? this.heap[1]: null;
     }
 
-    /**
-     * Inserts a new number into the heap and maintains the heaps order.
-     * 1. Push new num to back then.
-     * 2. Iteratively swap the new num with it's parent while it is smaller than
-     *    it's parent.
-     * - Time: O(log n) logarithmic due to shiftUp / iterative swapping.
-     * - Space: O(1) constant.
-     * @param {number} num The num to add.
-     */
-    insert(num) {
-        this.heap.push(num)
-        let idxofparent = Math.floor((this.heap.length - 1)/2)
-        let idxofnum = this.heap.length -1;
-        if(this.heap[idxofparent] < num){
-            return this;
-        }
-        while(idxofnum > 1){
-            if(this.heap[idxofnum] >= this.heap[idxofparent]){
-                [this.heap[idxofnum], this.heap[idxofparent]] = [this.heap[idxofparent], this.heap[idxofnum]]
-            }
-        }
-        return this;
-    }
 
-    insert2(num){
+    insert(num){
         this.heap.push(num)
         let currentIdx = this.heap.length - 1;
         while(this.heap[currentIdx] < this.heap[Math.floor(currentIdx/2)]){
@@ -85,9 +57,9 @@ class MinHeap {
 
 const newHeap = new MinHeap();
 
-newHeap.insert2(5)
-newHeap.insert2(7)
-newHeap.insert2(3)
+newHeap.insert(5)
+newHeap.insert(7)
+newHeap.insert(3)
 
 newHeap.printHorizontalTree()
 
