@@ -9,11 +9,6 @@
  */
 class MinHeap {
     constructor() {
-    /**
-       * 0th index not used, so null is a placeholder. Not using 0th index makes
-       * calculating the left and right children's index cleaner.
-       * This also effectively makes our array start at index 1.
-       */
     this.heap = [null];
     }
 
@@ -34,10 +29,7 @@ class MinHeap {
         }
     }
 
-    /**
-     * Logs the tree horizontally with the root on the left and the index in
-     * parenthesis using reverse inorder traversal.
-     */
+
     printHorizontalTree(parentIdx = 1, spaceCnt = 0, spaceIncr = 10) {
         if (parentIdx > this.heap.length - 1) {
         return;
