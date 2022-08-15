@@ -22,7 +22,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Created</th>
                 <th scope="col">User Type</th>
-                if(Context.Session.GetString("UserLevel") == "Admin")
+                @if(Context.Session.GetString("UserLevel") == "Admin")
                 {
                     <th scope="col">Actions</th>
                 }
@@ -37,7 +37,7 @@
                     <td>@u.Email</td>
                     <td>@u.CreatedAt</td>
                     <td>@u.UserLevel</td>
-                    if(Context.Session.GetString("UserLevel") == "Admin")
+                    @if(Context.Session.GetString("UserLevel") == "Admin")
                     {
                         <td><a asp-controller="User" asp-action="EditOne" asp-route-userId="@u.UserId">edit</a><a asp-controller="User" asp-action="DeleteOne"  asp-route-userId="@u.UserId">Delete</a></td>
                     }
