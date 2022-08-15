@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<body>
+    <div class="text-center">
+        <h3>Welcome to the Test</h3>
+        <p>We're going to build a cool application usin ga MVC Framework! This application was built with the Village88 folks!</p>
+
+        <a asp-controller="User" asp-action="SignIn" class="btn btn-primary">Start</a>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: space-evenly;">
+        <div>
+            <h4>Manage Users</h4>
+            <p>Using the application, you'll learn how to add, remove, and edit users for the application.</p>
+        </div>
+        <div>
+            <h4>Leave Messages</h4>
+            <p>Users will be able to leave a mesage to another user using this application.</p>
+        </div>
+        <div>
+            <h4>Edit User Information</h4>
+            <p>Admins will be able to edit another user's information (email address, first name, last name, etc.)</p>
+        </div>
+    </div>
+</body>
