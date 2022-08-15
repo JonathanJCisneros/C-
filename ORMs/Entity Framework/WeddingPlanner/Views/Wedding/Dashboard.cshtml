@@ -28,19 +28,16 @@
                 {
                     <tr>
                         <td><a asp-controller="Wedding" asp-action="OneWedding" asp-route-weddingId="@w.WeddingId">@w.WedderOne & @w.WedderTwo</a></td>
-                        <td>@w.Date.Date</td>
+                        <td>@w.Date.Date.ToString("MMMM d, yyyy")</td>
                         <td>@w.AttendanceList.Count</td>
                         <td>
-                        @{
-                            bool attending = w.AttendanceList.Any(a => a.AttendeeId == Context.Session.GetInt32("AttendeeId"));
-                        }
                         @if(w.PlannerId == Context.Session.GetInt32("AttendeeId"))
                         {
                             <a asp-controller="Wedding" asp-action="DeleteOne"  asp-route-weddingId="@w.WeddingId">Delete</a>
                         }
                         else{
                             <a asp-controller="Wedding" asp-action="Attend"  asp-route-weddingId="@w.WeddingId">
-                            @if(attending)
+                            @if(w.AttendanceList.Any(a => a.AttendeeId == Context.Session.GetInt32("AttendeeId")))
                             {
                                 <span>UN-RSVP</span>
                             }

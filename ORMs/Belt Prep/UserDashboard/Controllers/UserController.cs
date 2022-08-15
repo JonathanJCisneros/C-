@@ -82,23 +82,18 @@ public class UserController : Controller
                 ModelState.AddModelError("Email", "is taken");
                 return NewUser();
             }
+                newUser.UserLevel = "Admin";
+
+                PasswordHasher<User> hashBrowns = new PasswordHasher<User>();
+                newUser.Password = hashBrowns.HashPassword(newUser, newUser.Password);
+
+                db.Users.Add(newUser);
+                db.SaveChanges();
+                HttpContext.Session.SetInt32("UserId", newUser.UserId);
+                HttpContext.Session.SetString("UserLevel", newUser.UserLevel);
+                return RedirectToAction("Dashboard");
         }
-
-        if(ModelState.IsValid == false)
-        {
-            return NewUser();
-        }
-
-        newUser.UserLevel = "Admin";
-
-        PasswordHasher<User> hashBrowns = new PasswordHasher<User>();
-        newUser.Password = hashBrowns.HashPassword(newUser, newUser.Password);
-
-        db.Users.Add(newUser);
-        db.SaveChanges();
-        HttpContext.Session.SetInt32("UserId", newUser.UserId);
-        HttpContext.Session.SetString("UserLevel", newUser.UserLevel);
-        return RedirectToAction("Dashboard");
+        return NewUser();
     }
 
     [HttpGet("/dashboard")]
