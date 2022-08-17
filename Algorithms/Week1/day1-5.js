@@ -14,14 +14,46 @@ class SinglyLinkedList {
         this.head = null;
     }
 
+
+    reverse() {
+        if(this.isEmpty()){
+            return this;
+        }
+        let currentNode = this.head;
+        let prevNode = null;
+        let nextNode = null;
+
+        while (currentNode) {
+            nextNode = currentNode.next;
+            currentNode.next = prevNode;
+            prevNode = currentNode;
+            currentNode = nextNode;
+            nextNode = null;
+        }
+        this.head = prevNode;
+        return this;
+    }
+
+
     /**
-     * Concatenates the nodes of a given list onto the back of this list.
-     * - Time: O(?).
-     * - Space: O(?).
-     * @param {SinglyLinkedList} addList An instance of a different list whose
-     *    whose nodes will be added to the back of this list.
-     * @returns {SinglyLinkedList} This list with the added nodes.
-     */
+       * Determines whether the list has a loop in it which would result in
+       * infinitely traversing unless otherwise avoided. A loop is when a node's
+       * next points to a node that is behind it.
+       * - Time: (?).
+       * - Space: (?).
+       * @returns {boolean} Whether the list has a loop or not.
+       */
+    hasLoop() {}
+
+    /**
+       * Removes all the nodes that have a negative integer as their data.
+       * - Time: (?).
+       * - Space: (?).
+       * @returns {SinglyLinkedList} This list after the negatives are removed.
+       */
+    removeNegatives() {}
+
+
     concat(addList) {
         if(this.isEmpty()){
             this.head = addList;
@@ -35,48 +67,62 @@ class SinglyLinkedList {
         return this;
     }
 
-    /**
-      * Finds the node with the smallest data and moves that node to the front of
-      * this list.
-      * - Time: O(?).
-      * - Space: O(?).
-      * @returns {SinglyLinkedList} This list.
-      */
-    // moveMinToFront() {
-    //     if(this.isEmpty()){
-    //         return null;
-    //     }
-    //     let runner = this.head;
-    //     let min = runner.data;
 
-    //     while(runner.next){
-    //         if(runner.data < min){
-    //             min = runner.data
-    //         }
-    //     }
-    //     let creeper = this.head;
-    //     if(creeper.data == min) return this;
+    moveMinToFront() {
+        if (this.isEmpty()) {
+            return this;
+        }
 
-    //     runner = creeper.next;
+        let minNode = this.head;
+        let runner = this.head;
+        let prev = this.head;
 
-    //     while(runner.next){
+        while (runner.next) {
+            if (runner.next.data < minNode.data) {
+                prev = runner;
+                minNode = runner.next;
+            }
 
-    //     }
-    // }
+            runner = runner.next;
+        }
 
-     // EXTRA
-    /**
-      * Splits this list into two lists where the 2nd list starts with the node
-      * that has the given value.
-      * splitOnVal(5) for the list (1=>3=>5=>2=>4) will change list to (1=>3)
-      * and the return value will be a new list containing (5=>2=>4)
-      * - Time: O(?).
-      * - Space: O(?).
-      * @param {any} val The value in the node that the list should be split on.
-      * @returns {SinglyLinkedList} The split list containing the nodes that are
-      *    no longer in this list.
-      */
-    splitOnVal(val) {}
+        if (minNode === this.head) {
+            return this;
+        }
+
+        prev.next = minNode.next;
+        minNode.next = this.head;
+        this.head = minNode;
+        return this;
+    }
+
+
+    splitOnVal(val) {
+        const newList = new SinglyLinkedList();
+
+        if (!this.head) {
+            return newList;
+        }
+
+        if (this.head.data === val) {
+            newList.head = this.head;
+            this.head = null;
+            return newList;
+        }
+
+        let runner = this.head;
+
+        while (runner.next) {
+            if (runner.next.data === val) {
+                newList.head = runner.next;
+                runner.next = null;
+                return newList;
+            }
+            runner = runner.next;
+        }
+        return newList;
+    }
+
 
     secondToLast() {
         if(this.isEmpty() || this.head.next === null){
@@ -243,7 +289,7 @@ const emptyList = new SinglyLinkedList();
 
 // const singleNodeList = new SinglyLinkedList().insertAtBackMany([1]);
 // console.log(singleNodeList.toArr());
-const biNodeList = new SinglyLinkedList().insertAtBackMany([1, 2]);
+// const biNodeList = new SinglyLinkedList().insertAtBackMany([1, 2]);
 // console.log(biNodeList.toArr());
 // const firstThreeList = new SinglyLinkedList().insertAtBackMany([1, 2, 3]);
 // console.log(firstThreeList.toArr());
@@ -252,7 +298,7 @@ const biNodeList = new SinglyLinkedList().insertAtBackMany([1, 2]);
 // const unorderedList = new SinglyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2,]);
 // console.log(unorderedList.toArr());
 
-const unorderedList1 = new SinglyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2]).concat(biNodeList);
+const unorderedList1 = new SinglyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2]).reverse();
 console.log(unorderedList1.toArr());
 
 // /* node 4 connects to node 1, back to head */
